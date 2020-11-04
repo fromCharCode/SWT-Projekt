@@ -1,0 +1,34 @@
+= Protokoll Gruppe 36
+
+Treffen am 04.11.2019
+
+Ort:     + APB, vor 2078
+Beginn:  + 15:00 Uhr
+Ende:    + 16:00 Uhr
+
+__Schriftführer:__ Justin Bürger
+
+*Nächstes Treffen:* + 
+11.11.2019, 15:00 Uhr, APB vor 2078
+
+__Teilnehmer:__
+
+- Dr. Marvin Triebel
+- David Schneider (Scrum Master)
+- Dominik Hirsch
+- Jonas Bohmann
+- Ignacio Vasquez
+- Justin Bürger
+
+== Bemerkungen
+- Der nächste Schritt ist das Design: das Analysemodell soll in einen Entwurf überführt werden
+- Die Aufgabenverteilung ist bis nächste Woche abzuschließen
+- Die Entwicklerdokumentation ist bis zum Meilenstein, am 17.11.2019 einzureichen.
+- Ein Prototyp ist ebenfalls bis zu diesem Datum zu erstellen, er soll die wichtigsten Klassen enthalten und es muss mindestens eine Basisfunktionalität (ein Feature) implementiert sein.
+- Ein GUI-Prototyp ist bis zum nächsten Meilenstein zu erstellen.
+- Die Testfälle müssen bis zum 17.11.2019 präzisiert und dokumentiert werden.
+
+
+== Aktueller Stand
+Das Pflichtenheft ist bis auf einige kleine Korrekturen abgeschlossen. Der Hauptkritikpunkt ist die Verwendung von Spring-Akteuren bzw. Spring-Klassen, da diese nicht in die Analyse gehören.
+Die Videoshop-Aufgabe von Jonas und Justin ist abgeschlossen. David und Ignacio sollen ihre Augaben beim nächsten Meeting noch einmal vorstellen und Dominik seine Lösung, wenn möglich, optimieren.

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="navigation::head"><title>Login</title></head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="background landingpage">
+            <header>
+                <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+            </header>
+
+            <br/>
+        </div>
+    </header>
+
+    <form role="form" th:action="@{/login}" method="post">
+
+        <div class="form-group">
+
+            <label th:text="#{login.email}" for="emailInput">Email Adresse</label>
+            <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i> </span>   experimental -->
+            <input required type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
+                   placeholder="Email Adresse eingeben" name="username">
+
+        </div>
+
+        <div class="form-group">
+            <label th:text="#{login.password}" for="passwordInput">Passwort</label>
+            <input required type="password" class="form-control" id="passwordInput" name="password">
+        </div>
+
+        <button type="submit" class="btn btn-primary active">Login</button>
+
+    </form>
+
+    <br/>
+
+    <!-- fix this hyperlink" -->
+    <div>
+        <a class="btn btn-success" th:href="@{/register}" role="button">Klicke hier zum Registrieren...</a>
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+= Protokoll Gruppe 36
+
+Treffen am 18.10.2019
+
+Ort:     + APB, vor 2078
+Beginn:  + 13:00 Uhr
+Ende:    + 14:00 Uhr
+
+__Schriftführer:__ Justin Bürger
+
+*Nächstes Treffen:* + 
+21.10.2019, 15:00 Uhr, APB vor 2078
+
+__Teilnehmer:__
+
+- Dr. Marvin Triebel
+- David Schneider (Scrum Master)
+- Dominik Hirsch
+- Jonas Bohmann
+- Ignacio Vasquez
+- Justin Bürger
+
+== Bemerkungen
+- wöchentliches Treffen jeden Montag, 15:00 Uhr, vor APB 2078
+- E-Mail-Verteiler ist der entscheidende Kommunikationskanal
+- Jedes Treffen wie auch Arbeitsstunden werden protokolliert
+- Dominik Hirsch hat noch keine Einladung zum GitHub-Repo erhalten
+
+
+== Aktueller Stand
+- E-Mail-Verteiler funktioniert bei allen
+- Entwicklungsumgebung noch unklar - Frage zu den Unterschieden von IntelliJ und Spring Tool im Auditorium stellen
+- Guestshop-Erweiterung mit den E-Mails laufen bei Jonas Bohmann und David Schneider

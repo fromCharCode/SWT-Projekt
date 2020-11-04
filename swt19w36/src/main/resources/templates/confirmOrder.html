@@ -1,0 +1,86 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:insert="navigation::head"><title>Bestellung bestätigen</title></head>
+
+<body>
+
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav sec:authorize="isAuthenticated()" th:include="navigation :: navigation"></nav>
+
+<div class="background menu-img full-height">
+    <div class="container">
+        <br/>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Bestellung bestätigen</div>
+                    <div class="card-body">
+
+                        <div th:unless="${cart.empty}">
+                            <table class="table table-borderless table-striped">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th th:text="#{cart.meals}">Gerichte</th>
+                                    <th th:text="#{cart.count}">Anzahl</th>
+                                    <th th:text="#{cart.price}">Preis</th>
+                                    <th th:text="#{cart.time}">Bestellt für</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr th:each="item: ${cart}">
+                                    <div>
+                                        <td th:text="${item.productName}">LAH</td>
+                                        <td th:text="${item.quantity}">10</td>
+                                        <td th:text="${item.price}">5 Euro</td>
+                                        <td th:text="${menu.getWeekdayFromMeal(item.getProduct())}">Tag</td>
+                                    </div>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <div class="form-inline">
+                                <form class="form" method="get" th:action="@{/singleBilling}">
+                                    <b th:text="'Gesamtpreis: ' + ${cart.getPrice()}"
+                                       style="color: #DC3545; font-size: large;"></b>
+                                    <div style="margin: 10px"></div>
+                                    <button class="btn btn-success" type="submit" th:text="#{orders.single}"></button>
+                                </form>
+                            </div>
+
+                            <p th:if="${companyType == 'KINDERGARTEN'}"
+                               style="margin-left: 40px; margin-right: 40px; margin: 35px; font-size: large"> oder </p>
+
+                            <div class="form-inline">
+                                <form class="form" method="get" th:action="@{/groupBilling}"
+                                      th:if="${companyType == 'KINDERGARTEN'}"
+                                      sec:authorize="hasRole('CUSTOMER')">
+                                    <b th:text="'Gesamtpreis: ' + ${cart.getPrice().multiply(0.93)} + ' (Gruppenrabatt)'"
+                                       style="color: #DC3545; font-size: large;"></b>
+                                    <div style="margin: 10px"></div>
+                                    <button class="btn btn-success" type="submit" th:text="#{orders.group}"></button>
+                                    <br/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3"></div>
+
+
+    </div>
+</div>
+</body>
+</html>

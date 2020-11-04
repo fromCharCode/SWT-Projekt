@@ -1,0 +1,93 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head th:replace="navigation::head"><title>Alle Gerichte</title></head>
+
+<body>
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <script type="text/javascript">
+        function conf() {
+            return confirm("Sind Sie sich sicher, dass Sie dieses Gericht löschen wollen?");
+        }
+    </script>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="background kitchen-img full-height">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <!-- style must go to css later -->
+            <h1 class="display-4">Alle Gerichte</h1>
+            <div style="padding: 10px"></div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <a class="nav-link" href="allMeals.html" th:href="@{/kitchen/meals/new}">
+                    <div class="wrapper">
+                        <button class="btn btn-success">Neues Gericht erstellen</button>
+                    </div>
+                    <div style="padding: 10px"></div>
+                </a>
+                <div/>
+
+                <div class="col">
+                    <div class="card-columns">
+                        <div th:each=" meal : ${meals} ">
+                            <div class="card bg-light mb-3" style="max-width: 50rem;">
+                                <div class="card-body">
+                                    <h3 class="card-title"
+                                        style="margin-left: 5px; margin-top: 15px; margin-right: 10px"
+                                        th:text="${meal.getName()}">Rice with chicken</h3>
+                                    <h6 class="card-subtitle mb-2 text-muted"
+                                        style="margin-left: 5px; margin-top: 3px; margin-bottom: 5px"
+                                        th:text="${meal.getPrettyType()}">
+                                        Normal</h6>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <b>Beschreibung</b>
+                                        <div th:text="${meal.getDescription()}">Lecker!</div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Rezept</b>
+                                        <div th:text="${meal.getRecipe()}"></div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Preis</b>
+                                        <div th:text="${meal.getPrice()}"></div>
+                                    </li>
+                                    <li th:if="${meal.getIngredients().isEmpty()}" class="list-group-item">
+                                        <b>Zutaten</b>
+                                        <div>Keine Zutaten.</div>
+                                    </li>
+                                    <li th:unless="${meal.getIngredients().isEmpty()}" class="list-group-item">
+                                        <b>Zutaten</b>
+                                        <div th:each=" ingredient_in_meal : ${meal.getIngredients()} ">
+                                            <div th:text="${ingredient_in_meal.value.toString() + ingredient_in_meal.key.getMetric().getAbbreviation() + ' ' + ingredient_in_meal.key.getName()}"></div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <form method="post" th:action="@{/kitchen/meals/delete}">
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return conf()"
+                                                    name="deletemeal" th:value="${meal.getName()}">Gericht löschen
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

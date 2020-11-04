@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="navigation::head">
+    <title>Konto & Einstellungen</title>
+</head>
+<body>
+
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="background settings full-height">
+    <div class="container">
+        <h1 th:text="#{change.information}" class="display-4">Informationen und Einstellungen</h1>
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header">
+                        Kontoinformationen
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" th:if="${u.isCompany()}"
+                            th:text="'Benutzername: ' + ${u.companyName}"></li>
+                        <li class="list-group-item" th:if="${!u.isCompany()}"
+                            th:text="'Benutzername: ' + ${u.forename} + ' ' + ${u.surname}"></li>
+                        <li class="list-group-item" th:text="'Email: ' + ${userMail}"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header">Konto bearbeiten</div>
+                    <div class="card-body">
+                        <!-- COMPANY SETTINGS -->
+                        <form th:if="${u.isCompany()}" method="post" role="form" th:action="@{/saveCompany}"
+                              th:object="${companySettingsForm}">
+
+                            <!-- COMPANY NAME -->
+                            <div class="form-group">
+                                <label th:text="#{change.companyName}">Vorname</label>
+                                <input th:placeholder="${u.companyName}" name="name" type="text" class="form-control"
+                                       th:field="*{companyName}">
+                            </div>
+
+                            <!-- EMAIL -->
+                            <div class="form-group">
+                                <label th:text="#{register.email}">E-Mail</label>
+                                <input th:placeholder="${userMail}" name="username" type="text" class="form-control"
+                                       aria-describedby="emailHelp"
+                                       th:field="*{email}">
+                                <small class="form-text text-muted">Wir geben deine E-Mail nie an Dritte weiter.</small>
+                            </div>
+
+                            <!-- SAVE BUTTON -->
+                            <br/>
+                            <button type="submit" class="btn btn-success">Änderungen speichern</button>
+                        </form>
+
+                        <!-- CUSTOMER SETTINGS -->
+                        <form th:if="${u.isCustomer()}" method="post" role="form" th:action="@{/saveCustomer}"
+                              th:object="${customerSettingsForm}">
+
+                            <!-- FORENAME -->
+                            <div class="form-group">
+                                <label th:text="#{change.forename}">Vorname</label>
+                                <input th:placeholder="${u.forename}" name="name" type="text" class="form-control"
+                                       th:field="*{forename}">
+                            </div>
+
+                            <!-- SURNAME -->
+                            <div class="form-group">
+                                <label th:text="#{change.surname}">Nachname</label>
+                                <input th:placeholder="${u.surname}" name="name" type="text" class="form-control"
+                                       th:field="*{surname}">
+                            </div>
+
+                            <!-- EMAIL -->
+                            <div class="form-group">
+                                <label th:text="#{register.email}">E-Mail</label>
+                                <input name="username" type="text" class="form-control" aria-describedby="emailHelp"
+                                       th:placeholder="${userMail}" th:field="*{email}">
+                                <small class="form-text text-muted">Wir geben deine E-Mail nie an Dritte weiter.</small>
+                            </div>
+
+                            <!-- SAVE BUTTON -->
+                            <br/>
+                            <button type="submit" class="btn btn-success">Änderungen speichern</button>
+                        </form>
+
+                        <!-- EMPLOYEE SETTINGS | note: is using form of customer -->
+                        <form th:if="${u.isEmployee()}" method="post" role="form" th:action="@{/saveEmployee}"
+                              th:object="${customerSettingsForm}">
+
+                            <!-- FORENAME -->
+                            <div class="form-group">
+                                <label th:text="#{change.forename}">Vorname</label>
+                                <input th:placeholder="${u.forename}" name="name" type="text" class="form-control"
+                                       th:field="*{forename}">
+                            </div>
+
+                            <!-- SURNAME -->
+                            <div class="form-group">
+                                <label th:text="#{change.surname}">Nachname</label>
+                                <input th:placeholder="${u.surname}" name="name" type="text" class="form-control"
+                                       th:field="*{surname}">
+                            </div>
+
+                            <!-- EMAIL -->
+                            <div class="form-group">
+                                <label th:text="#{register.email}">E-Mail</label>
+                                <input name="username" type="text" class="form-control" aria-describedby="emailHelp"
+                                       th:placeholder="${userMail}" th:field="*{email}">
+                                <small class="form-text text-muted">Wir geben deine E-Mail nie an Dritte weiter.</small>
+                            </div>
+
+                            <!-- SAVE BUTTON -->
+                            <br/>
+                            <button type="submit" class="btn btn-success">Änderungen speichern</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

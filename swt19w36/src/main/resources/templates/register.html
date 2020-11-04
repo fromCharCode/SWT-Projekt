@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="navigation::head">
+    <title>Registrierung</title>
+</head>
+<body>
+
+<div class="background landingpage full-height">
+    <div class="container">
+        <header>
+            <header>
+                <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+            </header>
+
+            <br/>
+        </header>
+
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="white shadow">
+
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#customer" role="tab">Als Kunde
+                                registrieren</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#company" role="tab">Als Organisation
+                                registrieren</a>
+                        </li>
+                    </ul>
+
+                    <br/>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="customer">
+                            <form id="customerRegistrationForm" method="post" role="form" th:action="@{/registerUser}"
+                                  th:object="${userForm}">
+
+                                <!-- FORENAME -->
+                                <div class="form-group" id="foreNameInput">
+                                    <label th:text="#{register.name}">Enter your forename</label>
+                                    <input id="forename" name="forename" type="text" th:errorclass="fieldError"
+                                           class="form-control"
+                                           placeholder="Max" th:field="*{forename}" required="required">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('forename')}"
+                                         th:errors="*{forename}">
+                                        Der Name darf nicht leer sein.
+                                    </div>
+                                </div>
+
+                                <!-- SURENAME -->
+                                <div class="form-group" id="surNameInput">
+                                    <label th:text="#{register.secName}">Enter your second name</label>
+                                    <input id="surname" type="text" th:errorclass="fieldError" class="form-control"
+                                           placeholder="Musterman"
+                                           th:field="*{surname}" required="required">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('surname')}"
+                                         th:errors="*{surname}">
+                                        Der Nachname darf nicht leer sein.
+                                    </div>
+                                </div>
+
+                                <!-- EMAIL -->
+                                <div class="form-group">
+                                    <label th:text="#{register.email}">Enter your E-Mail</label>
+                                    <input id="email" name="username" type="text" th:errorclass="fieldError"
+                                           class="form-control"
+                                           aria-describedby="emailHelp"
+                                           placeholder="max.mustermann@tu-dresden.de" th:field="*{email}"
+                                           required="required">
+                                    <small id="emailHelp" class="form-text text-muted">Wir werden deine Daten niemals an
+                                        Dritte
+                                        weitergeben.</small>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}"
+                                         th:errors="*{email}">
+                                        Die Email ist nicht gültig.
+                                    </div>
+                                </div>
+
+                                <!-- PASSWORD -->
+                                <div class="form-group">
+                                    <label th:text="#{register.password}" th:field="*{password}">Enter your
+                                        password</label>
+                                    <input id="passwordInput" name="password" th:errorclass="fieldError" type="password"
+                                           class="form-control"
+                                           required="required">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}"
+                                         th:errors="*{password}">
+                                        Das Passwort darf nicht leer sein
+                                    </div>
+                                </div>
+
+                                <!-- COPMANY -->
+                                <div class="form-group">
+                                    <label>Zu welcher Organistation gehörst du?</label>
+                                    <select id="companySelection" class="form-control" th:field="*{associatedCompany}">
+                                        <option th:each="company : ${companies}" th:text="${company.companyName}"
+                                                th:value="${company.companyName}">1
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <!-- TERMS -->
+                                <div class="form-check">
+                                    <input id="uCheck" type="checkbox" class="form-check-input" required="required">
+                                    <label class="form-check-label">
+                                        <!-- for="checkbox" -->
+                                        Ich habe die <a href="/conditions">Bedingungen</a> gelesen und bin damit
+                                        einverstanden.
+                                    </label>
+                                </div>
+
+                                <br/>
+                                <i>Hinweis: Ein neuer Kunde muss nach seiner Registrierung noch von dessen Organisation
+                                    freigeschaltet werden,
+                                    bevor der Kunde sich einloggen kann.</i>
+                                <br/>
+
+                                <button id="uButton" disabled="disabled" type="submit" class="btn btn-success">
+                                    Registrieren
+                                </button>
+                                <a th:href="@{/login}" class="btn btn-primary active">Zurück</a>
+                            </form>
+                        </div>
+
+
+                        <div class="tab-pane" id="company">
+
+                            <!-- COMPANY FORM -->
+                            <form id="companyRegistrationForm" method="post" role="form" th:action="@{/registerCompany}"
+                                  th:object="${companyForm}">
+
+                                <!-- COMPANY NAME -->
+                                <div class="form-group">
+                                    <label th:text="#{register.companyName}">Enter your Company</label>
+                                    <input id="companyName" name="name" type="text" th:errorclass="fieldError"
+                                           class="form-control"
+                                           placeholder="Best-Food-Catering" th:field="*{companyName}"
+                                           required="required">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('companyName')}"
+                                         th:errors="*{companyName}">
+                                        Das Passwort darf nicht leer sein
+                                    </div>
+                                </div>
+
+                                <!-- EMAIL -->
+                                <div class="form-group">
+                                    <label th:text="#{register.email}">Enter your E-Mail</label>
+                                    <input id="companyEmail" name="username" type="text" th:errorclass="fieldError"
+                                           class="form-control"
+                                           aria-describedby="emailHelp" placeholder="info@organisation.de"
+                                           th:field="*{email}"
+                                           required="required">
+                                    <small class="form-text text-muted">Wir werden deine Daten niemals an Dritte
+                                        weitergeben.</small>
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}"
+                                         th:errors="*{email}">
+                                        Die Email ist nicht gültig.
+                                    </div>
+                                </div>
+
+                                <!-- PASSWORD -->
+                                <div class="form-group">
+                                    <label th:text="#{register.password}" th:field="*{password}">Enter your
+                                        password</label>
+                                    <input name="password" type="password" th:errorclass="fieldError"
+                                           class="form-control"
+                                           required="required">
+                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}"
+                                         th:errors="*{password}">
+                                        Das Passwort darf nicht leer sein.
+                                    </div>
+                                </div>
+
+
+                                <!-- COPMANY -->
+                                <div class="form-group">
+                                    <label>Art der Organisation</label>
+                                    <select name="companyType" class="form-control" th:field="*{companyType}">
+                                        <option th:each="compType : ${T(best_food_catering.user.company.CompanyType).values()}"
+                                                th:value="${compType}" th:text="${compType.displayValue}"></option>
+                                    </select>
+                                </div>
+
+                                <!-- TERMS -->
+                                <div class="form-check">
+                                    <input id="cCheck" type="checkbox" class="form-check-input" required="required">
+                                    <label class="form-check-label">
+                                        Ich habe die <a href="/conditions">Bedingungen</a> gelesen und bin damit
+                                        einverstanden.
+                                    </label>
+                                </div>
+
+                                <!-- REGISTER BUTTON -->
+                                <br/>
+                                <button id="cButton" disabled="disabled" type="submit" class="btn btn-success">
+                                    Registrieren
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <br/>
+        <br/>
+
+    </div>
+</div>
+
+</body>
+</html>

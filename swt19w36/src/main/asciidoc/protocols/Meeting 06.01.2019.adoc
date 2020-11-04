@@ -1,0 +1,35 @@
+= Protokoll Gruppe 36
+
+Treffen am 06.01.2020
+
+Ort:     + APB, vor 2078
+Beginn:  + 15:30 Uhr
+Ende:    + 16:30 Uhr
+
+__Schriftführer:__ Justin Bürger
+
+*Nächstes Treffen:* + 
+13.01.2020, 15:30 Uhr, APB vor 2078
+
+__Teilnehmer:__
+
+- Julian Catoni
+- David Schneider (Scrum Master)
+- Dominik Hirsch
+- Ignacio Vasquez
+- Justin Bürger
+
+== Bemerkungen
+- Jonas Bohmann konnte nicht am Treffen teilnehmen
+- Termin für die Abschlusspräsentation ist Donnerstag, der 23.01.19, 9:20 Uhr
+- Die nicht mehr genutzten Branches sollen gelöscht werden
+- Die Anmerkungen des Cross-Testings, die Marvin nur mit der anderen Gruppe besprochen hat, sind hinfällig
+- Der Kundenwunsch zum Abschluss ist:
+Eine Übersicht darüber, wie oft welches Gericht bestellt wurde. Dies soll einmal global (für den Gesamtzeitraum der Anwendung) und einmal wöchentlich geschehen.
+- Bis zum Abschluss müssen die Bugs aus dem Crosstesting-Bericht beseitigt sein
+- Bis zum Abschluss müssen alle Muss-Kriterien erfüllt sein
+- Bis zum Abschluss muss der Kundenwunsch implementiert sein
+- Bis zum Abschluss muss Sonar Cube "passed" anzeigen
+
+== Aktueller Stand
+- Muss-Kriterien stehen

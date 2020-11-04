@@ -1,0 +1,60 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="navigation::head">
+    <title>Statistik</title>
+</head>
+<body>
+
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="background kitchen-img full-height">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 th:text="#{statistic.banner}" class="display-4">Essens-Ranking</h1>
+
+
+                <!-- either a table or a chart -->
+                <table class="table table-borderless table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Gericht</th>
+                        <th>Anzahl der Verkäufe</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="instance : ${rankingComplete}">
+                        <td th:text="${instance.getFirst()}">keyvalue</td>
+                        <td th:text="${instance.getSecond()}">num</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h1 class="display-4">Wochenknaller</h1>
+
+
+                <table class="table table-borderless table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Gericht</th>
+                        <th>Anzahl der Verkäufe</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="instance : ${weekRanking}">
+                        <td th:text="${instance.getFirst()}">keyvalue</td>
+                        <td th:text="${instance.getSecond()}">num</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

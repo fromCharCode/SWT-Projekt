@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="navigation::head">
+    <title>Admin</title>
+</head>
+
+<body>
+
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="background admin-img full-height">
+    <div class="container">
+
+        <h1 class="display-4 white-font">Admin Übersicht</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header">
+                        Mitarbeiter anlegen
+                    </div>
+                    <div class="card-body">
+                        <form method="post" role="form" th:action="@{/registerEmployee}"
+                              th:object="${employeeRegistrationForm}">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- FORENAME -->
+                                    <div class="form-group" id="foreNameInput">
+                                        <label th:text="#{register.name}">Vorname</label>
+                                        <input required id="foreNameInputBox" name="name" type="text"
+                                               class="form-control" placeholder="Max"
+                                               th:field="*{forename}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <!-- SURENAME -->
+                                    <div class="form-group" id="surNameInput">
+                                        <label th:text="#{register.secName}">Nachname</label>
+                                        <input required id="surNameInputBox" type="text" class="form-control"
+                                               placeholder="Musterman"
+                                               th:field="*{surname}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- EMAIL -->
+                                    <div class="form-group">
+                                        <label th:text="#{register.email}">E-Mail Adresse</label>
+                                        <input required id="emailInput" name="username" type="text" class="form-control"
+                                               aria-describedby="emailHelp"
+                                               placeholder="max.mustermann@tu-dresden.de" th:field="*{email}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- PASSWORD -->
+                                    <div class="form-group">
+                                        <label th:text="#{register.password}" th:field="*{password}">Passwort</label>
+                                        <input required id="passwordInput" name="password" type="password"
+                                               class="form-control">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- STAFF ROLE -->
+                                    <div class="form-group">
+                                        <label>Rolle</label>
+                                        <select name="employee" class="form-control" th:field="*{role}">
+                                            <option th:each="emplRole: ${T(best_food_catering.user.employee.EmployeeType).values()}"
+                                                    th:value="${emplRole}" th:text="${emplRole.displayValue}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- REGISTER BUTTON -->
+                            <br/>
+                            <div>
+                                <button id="uButton" type="submit" class="btn btn-success">Neuen Mitarbeiter
+                                    registrieren
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header">
+                        Mitarbeiter bearbeiten
+                    </div>
+                    <div class="card-body">
+                        <form method="post" role="form" th:action="@{/changeEmployee}"
+                              th:object="${employeeSettingsForm}">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- ID -->
+                                    <div class="form-group" id="idInput1">
+                                        <label th:text="'ID und Email'"></label>
+                                        <select name="employee" class="form-control" th:field="*{id}">
+                                            <option th:each="employee: ${employeeList}"
+                                                    th:value="${employee.id}"
+                                                    th:text="${employee.id} + ' - ' + ${employee.email}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- E-MAIL -->
+                                    <div class="form-group">
+                                        <label th:text="#{register.email}" th:field="*{email}">Email</label>
+                                        <input id="passwordInput1" name="email" type="email" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- FORENAME -->
+                                    <div class="form-group" id="foreNameInput1">
+                                        <label th:text="#{register.name}">Vorname</label>
+                                        <input id="foreNameInputBox1" name="name" type="text" class="form-control"
+                                               placeholder="Max"
+                                               th:field="*{forename}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- SURENAME -->
+                                    <div class="form-group" id="surNameInput1">
+                                        <label th:text="#{register.secName}">Nachname</label>
+                                        <input id="surNameInputBox1" type="text" class="form-control"
+                                               placeholder="Musterman"
+                                               th:field="*{surname}">
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div>
+                                <button id="uButton1" type="submit" class="btn btn-success">Änderungen speichern
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+            <br/>
+        </div>
+        <br/>
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">Mitarbeiterverwaltung</div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-striped">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>Vorname</th>
+                                <th>Nachname</th>
+                                <th>Rolle</th>
+                                <th>Email</th>
+                                <th>ID</th>
+                                <th>Aktion</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr th:each="employee : ${employeeList}">
+                                <td th:text="${employee.forename}"></td>
+                                <td th:text="${employee.surname}"></td>
+                                <td th:text="${employee.role}"></td>
+                                <td th:text="${employee.email}"></td>
+                                <td th:text="${employee.id}"></td>
+                                <td>
+                                    <a th:href="@{/deleteBFCEmployee(employeeId=${employee.id})}"
+                                       onclick="return confDelEmply()"
+                                       class="btn btn-danger btn-sm">
+                                        Mitarbeiter löschen
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

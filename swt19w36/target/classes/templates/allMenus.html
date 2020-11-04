@@ -1,0 +1,99 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head th:insert="navigation::head"><title>Alle Speisepläne</title></head>
+<body>
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <script type="text/javascript">
+        function conf() {
+            return confirm("Sind Sie sich sicher, dass Sie diesen Speiseplan löschen wollen?");
+        }
+    </script>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+<div class="background kitchen-img full-height">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <!-- style must go to css later -->
+                <div style="margin-bottom: 15px"></div>
+                <h2 class="display-4" style="text-align: center;">Alle Speisepläne</h2>
+                <div style="margin-bottom: 20px"></div>
+
+                <a class="nav-link" style="align-content: flex-end;" th:href="@{/kitchen/menus/new}">
+                    <div class="wrapper" style="align-content: flex-end;">
+                        <button class="btn btn-success">Neuen Speiseplan erstellen</button>
+                    </div>
+                </a>
+
+                <div style="margin-bottom: 20px"></div>
+
+                <div class="">
+                    <div th:each=" menu : ${menus} ">
+                        <div class="card bg-light mb-6" style="min-width: fit-content; margin: 1rem;">
+                            <h4 class="card-header" style="text-align: center"
+                                th:text="${'Speiseplan für Kalenderwoche ' + menu.getCalenderWeek() + ' von ' + menu.getYear()}">
+                                Woche</h4>
+
+                            <div class="card-body">
+                                <table class="table table-borderless table-striped" style="width: fit-content">
+                                    <thead class="thead-dark">
+                                    <th></th>
+                                    <th>Montag</th>
+                                    <th>Dienstag</th>
+                                    <th>Mittwoch</th>
+                                    <th>Donnerstag</th>
+                                    <th>Freitag</th>
+                                    <thead class="thead-dark">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>Normal</b>
+                                        </td>
+                                        <td th:each="normal : ${menu.getSortedNormalMeals()}">
+                                            <p th:text="${normal.getName()}">Rice with chicken</p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <b>Spezial</b>
+                                        </td>
+                                        <td th:each="sp : ${menu.getSortedSpecialMeals()}">
+                                            <p th:text="${sp.getName()}">Rice with chicken</p>
+                                        </td>
+                                    <tr>
+                                        <td>
+                                            <b>Diät</b>
+                                        </td>
+                                        <td th:each="d : ${menu.getSortedDietMeals()}">
+                                            <p th:text="${d.getName()}">Rice with chicken</p>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                                <form method="post" role="form" th:action="@{/kitchen/menus/delete}">
+                                    <button type="submit" class="btn btn-danger btn-sm" name="deletemenu"
+                                            onclick="return conf()" th:value="${menu.getDate()}">Speiseplan
+                                        löschen
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

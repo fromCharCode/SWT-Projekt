@@ -1,0 +1,85 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head th:insert="navigation::head"><title></title></head>
+
+<body>
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="background kitchen-img full-height">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <!-- style must go to css later -->
+            <h1 class="display-4" style="text-align: center;">Bestellungen für den heutigen Tag</h1>
+        </div>
+
+        <div style="padding: 10px"></div>
+
+        <div class="row">
+            <div class="col-md-12" th:if="${report != null && !report.getMealsPerDay(day).isEmpty()}">
+                <div style="padding: 15px"></div>
+                <div class="card-group">
+                    <div th:each="entries : ${report.getMealsPerDay(day)}" class="card bg-light mb-3"
+                         style="max-width: 30rem">
+                        <div class="card-body">
+                            <h3 class="card-title" th:text="${entries.key.getMeal().getName()}">Lecker!</h3>
+                            <h6 class="card-subtitle mb-2 text-muted"
+                                th:text="${entries.key.getMeal().getPrettyType()}">
+                                Normal</h6>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <b>Rezept</b>
+                                <div class="card-text" th:text="${entries.key.getMeal().getRecipe()}">Lecker!</div>
+
+                            </li>
+
+                            <li class="list-group-item">
+                                <b>Größe</b>
+                                <div class="card-text" th:text="${entries.key.getPrettySize()}">Lecker!</div>
+
+                            </li>
+
+                            <div th:if="${entries.key.getMeal().getIngredients().isEmpty()}">
+                                <li class="list-group-item">
+                                    <b>Zutaten</b>
+                                    <div class="card-text">Keine Zutaten.</div>
+                                </li>
+                            </div>
+
+                            <div th:if="${!entries.key.getMeal().getIngredients().isEmpty()}">
+                                <li class="list-group-item">
+                                    <b>Zutaten</b>
+                                    <div th:each=" ingredient_in_meal : ${entries.key.getMeal().getIngredients()} ">
+                                        <div class="card-text"
+                                             th:text="${ingredient_in_meal.value.toString() + ingredient_in_meal.key.getMetric().getAbbreviation() + ' ' + ingredient_in_meal.key.getName()}"></div>
+                                    </div>
+                                </li>
+                            </div>
+
+                            <li class="list-group-item">
+                                <b>Anzahl</b>
+                                <div class="card-text" th:text="${entries.value.toString()}">Lecker!</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" th:if="${report == null || report.getMealsPerDay(day).isEmpty()}">
+                <div class="alert alert-danger" role="alert">
+                    Es gibt noch keine Bestellungen für den heutigen Tag.
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

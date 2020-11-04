@@ -1,0 +1,152 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head th:insert="navigation::head"><title>Neues Gericht erstellen</title></head>
+
+<body>
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+
+<div class="background kitchen-img full-height">
+    <h1 class="display-4">Neues Gericht erstellen</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div style="width:800px; margin:0 auto">
+
+
+                    <div class="card">
+                        <div class="card-header">Neues Gericht erstellen</div>
+                        <div class="card-body">
+
+
+                            <form id="addMealForm" style="align-content: center;" method="post" role="form"
+                                  th:action="@{/kitchen/meals/new/post}" th:object="${mealForm}">
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- NAME -->
+                                        <div class="form-group">
+                                            <label style="font-size: large" th:text="#{meal.name}">Name</label>
+                                            <input required name="name" type="text" class="form-control"
+                                                   placeholder="Pommes Frittes"
+                                                   th:field="*{name}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- descritpion -->
+                                        <div class="form-group">
+                                            <label style="font-size: large"
+                                                   th:text="#{meal.description}">Beschreibung</label>
+                                            <input required name="name" type="text" class="form-control"
+                                                   placeholder="Leckere Pommes mit Mayo oder Ketchup"
+                                                   th:field="*{description}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- money -->
+                                        <div class="form-group">
+                                            <label style="font-size: large" th:text="#{meal.money}">Preis</label>
+                                            <input required type="number" min="1" step="any" class="form-control"
+                                                   placeholder="2,99"
+                                                   th:field="*{money}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- recipe -->
+                                        <div class="form-group">
+                                            <label style="font-size: large" th:text="#{meal.recipe}">Rezept</label>
+                                            <input required name="username" type="text" class="form-control"
+                                                   placeholder="Bei 250 Grad im Ofen für 30 Minuten braten."
+                                                   th:field="*{recipe}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <!-- ingriedents -->
+                                        <div class="form-group">
+                                            <table class="table table-borderless table-striped">
+                                                <thead class="thead-dark">
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Zutat</th>
+                                                    <th>Anzahl</th>
+                                                    <th>
+                                                        <button type="submit" class="btn btn-primary btn-sm"
+                                                                name="action"
+                                                                value="addrow">Zutat hinzufügen
+                                                        </button>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="row,rowStat : *{rows}">
+                                                    <td th:text="${rowStat.count}">1</td>
+                                                    <td>
+                                                        <select class="custom-select"
+                                                                th:field="*{rows[__${rowStat.index}__].ingredientID}">
+                                                            <option th:each="ing : ${ingredients}"
+                                                                    th:value="${ing.id}"
+                                                                    th:text="${ing.name}">Tomate
+                                                            </option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input required class="form-control" type="number" min="1"
+                                                               th:field="*{rows[__${rowStat.index}__].quantityAmount}"/>
+                                                    </td>
+                                                    <td>
+                                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                                name="removerow"
+                                                                th:value="${rowStat.index}">Zutat entfernen
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- type -->
+                                        <div class="form-group">
+                                            <label style="font-size: large">Typ</label>
+                                            <select class="form-control" th:field="*{type}">
+                                                <option th:value="Normal">Normal</option>
+                                                <option th:value="Diät">Diät</option>
+                                                <option th:value="Spezial">Spezial</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <button id="uButton" type="submit" name="action" value="submit"
+                                        class="btn btn-success">
+                                    Erstellen
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

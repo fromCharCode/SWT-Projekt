@@ -1,0 +1,198 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head th:insert="navigation::head"><title>Lager Übersicht</title></head>
+
+<body>
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="background storage-img full-height">
+    <div class="container">
+        <h1 class="display-4">Lager Übersicht</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header">Küchenreport</div>
+                    <div class="card-body">
+                        <div class="card-group" th:if="${report != null}">
+                            <div th:each="ingredients : ${report.getUsedIngredients()}" class="card bg-light mb-3"
+                                 style="max-width: 30rem">
+                                <div class="card-body">
+                                    <h3 class="card-title" th:text="${ingredients.key.getName()}">Lecker!</h3>
+                                </div>
+                                <ul class="list-group list-group-flush">
+
+                                    <li class="list-group-item">
+                                        <b>Anzahl</b>
+                                        <div class="card-text" th:text="${ingredients.value.toString()}">So viele!</div>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <b>Einheit</b>
+                                        <div class="card-text" th:text="${ingredients.key.getMetric()}">KILO</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header">Verdorbene Lebensmittel</div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-striped">
+
+                            <thead class="thead-dark">
+                            <th scope="col">Verdorbene Zutat</th>
+                            <th scope="col">Menge</th>
+                            <th scope="col">MHD</th>
+                            <th scope="col">Mindestmenge</th>
+                            </thead>
+                            <tbody>
+                            <tr th:each=" item : ${storageDefault}">
+                                <td th:text="${item.name}">Tomaten</td>
+                                <td th:text="${item.quantity}">10</td>
+                                <td th:text="${item.bestBefore}">30.11.2020</td>
+                                <td th:text="${item.minAmount}">30</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <form th:action="@{/inventory/deleteExpired}" method="post">
+                            <button class="btn btn-danger" type="submit" onClick="return confDelStorage()">Zutaten löschen
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br/>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header">Inventar</div>
+                    <div class="card-body">
+                        <form method="post" role="form" th:action="@{/inventory/stock}" th:object="${ingredientForm}">
+
+                            <div class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('*')}"
+                                 th:text="${error}"></div>
+                            <div class="alert alert-danger" role="alert" th:if="${minAmountError}"
+                                 th:text="'Sie müssen die mindestmenge bestellen'"></div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="inputIngName" style="font-size: large">Zutatenname</label>
+                                        <input class="form-control" id="inputIngName" th:name="name" th:field="*{name}"
+                                               placeholder="Name"
+                                               required/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="inputIngPrice" style="font-size: large">Preis</label>
+                                        <input class="form-control" input="number" id="inputIngPrice" th:name="price"
+                                               th:field="*{price}"
+                                               placeholder="2" min="0.01" max="1000000" step="0.01" required/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label style="font-size: large">Einheit</label>
+                                        <select id="inputIngMetric" class="form-control" th:field="*{metric}">
+                                            <option th:value="KILOGRAM">Kilogram</option>
+                                            <option th:value="LITER">Liter</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="inputIngMinAmount" style="font-size: large">Minimalmenge</label>
+                                        <input class="form-control" type="number" id="inputIngMinAmount"
+                                               th:name="minAmount"
+                                               th:field="*{minAmount}"
+                                               placeholder="2" required/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="inputIngDate" style="font-size: large">Haltbar bis:</label>
+                                        <input class="form-control" type="date" id="inputIngDate" th:name="date"
+                                               th:field="*{bestBefore}"
+                                               placeholder="" required/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="inputIngQuantity" style="font-size: large">Menge</label>
+                                        <input class="form-control" type="number" id="inputIngQuantity"
+                                               th:name="quantity"
+                                               th:field="*{quantity}"
+                                               placeholder="4" step="1" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Neue Zutat anlegen</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header">Lager</div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-striped">
+
+                            <thead class="thead-dark">
+                            <th scope="col">Zutat</th>
+                            <th scope="col">Menge</th>
+                            <th scope="col">MHD</th>
+                            <th scope="col">Mindestmenge</th>
+                            <th scope="col">Einheit</th>
+                            <th scope="col">Aktion</th>
+                            </thead>
+                            <tbody th:remove="all-but-first">
+                            <tr th:each=" item : ${stock}">
+                                <td th:id="${item.name}" th:text="${item.name}">Tomaten</td>
+                                <td th:text="${item.quantity}">10</td>
+                                <td th:text="${item.bestBefore}">30.11.2020</td>
+                                <td th:text="${item.minAmount}">30</td>
+                                <td th:text="${item.metric}">KILOGRAM</td>
+                                <td>
+                                    <a th:href="@{/inventory/delete(ingredientId=${item.id})}"
+                                       class="btn btn-danger btn-sm" onclick="return confDelIngredient()">
+                                        Zutat löschen
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

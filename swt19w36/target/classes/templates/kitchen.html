@@ -1,0 +1,101 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+
+<head th:insert="navigation::head">
+    <title>Küche</title>
+</head>
+
+
+<body>
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="background kitchen-img full-height">
+    <div class="container">
+
+        <h1 class="display-4" style="text-align: center;">Küche Übersicht</h1>
+
+        <div class="card">
+            <div th:if="${menu != null}" class="card-header"
+                 th:text="'Aktueller Speiseplan für diese Woche (KW' + ${menu.getCalenderWeek()} + ')'"></div>
+
+            <div th:if="${menu == null}" class="card-header">Kein Speiseplan</div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10" th:if="${menu != null}">
+                        <table class="table table-borderless table-striped">
+                            <thead class="thead-dark">
+                            <th></th>
+                            <th>Montag</th>
+                            <th>Dienstag</th>
+                            <th>Mittwoch</th>
+                            <th>Donnerstag</th>
+                            <th>Freitag</th>
+                            <thead class="thead-dark">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <b>Normal</b>
+                                </td>
+                                <td th:each="normal : ${menu.getSortedNormalMeals()}">
+                                    <p th:text="${normal.getName()}">Rice with chicken</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Spezial</b>
+                                </td>
+                                <td th:each="sp : ${menu.getSortedSpecialMeals()}">
+                                    <p th:text="${sp.getName()}">Rice with chicken</p>
+                                </td>
+                            <tr>
+                                <td>
+                                    <b>Diät</b>
+                                </td>
+                                <td th:each="d : ${menu.getSortedDietMeals()}">
+                                    <p th:text="${d.getName()}">Rice with chicken</p>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-10" th:if="${menu == null}">
+                        <div class="alert alert-danger" role="alert">
+                            Es gibt keinen Speiseplan für die aktuelle Kalenderwoche!
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <a class="nav-link" href="dailyOrders.html" th:href="@{/kitchen/daily}">
+                            <button class="btn btn-primary">Zu den heutigen Bestellungen</button>
+                        </a>
+
+                        <a class="nav-link" href="allMeals.html" th:href="@{/kitchen/meals}">
+                            <button class="btn btn-primary">Zu den Gerichten</button>
+                        </a>
+
+                        <a class="nav-link" href="allMeals.html" th:href="@{/kitchen/menus}">
+                            <button class="btn btn-primary">Zu den Speiseplänen</button>
+                        </a>
+
+                        <a class="nav-link" href="statistics.html" th:href="@{/statistics}">
+                            <button class="btn btn-primary">Zum Essensranking</button>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

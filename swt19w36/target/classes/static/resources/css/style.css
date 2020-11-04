@@ -1,0 +1,314 @@
+/* CSS RESET */
+/*
+@font-face {
+	font-family: "Lobster";
+	src: url("https://fonts.googleapis.com/css?family=Lobster&display=swap") format("woff2"),
+	url("https://fonts.googleapis.com/css?family=Lobster&display=swap") format("woff");
+}
+ */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html{
+	height: 100%;
+}
+
+body {
+	margin: 0 auto;
+	width: auto;
+	font: 13px/22px Helvetica, Arial, sans-serif;
+	background: #f0f0f0;
+	min-height: 100%;
+	position:absolute; top:0; bottom:0; right:0; left:0;
+}
+
+.full-height{
+	min-height: 100%;
+}
+
+h1 {
+	font-size: 3em;
+	line-height: 3.2em;
+	text-align:center;
+	padding-top: 10px;
+}
+
+nav{
+	background-color: antiquewhite;
+	margin: 0 auto;
+	width: auto;
+	text-align: center;
+}
+
+
+
+.white{
+	margin: 15px;
+	padding: 20px;
+	background-color: white;
+}
+
+.landingText{
+	text-align: justify;
+	font-size: 1.5em;
+}
+
+.card-text{
+	color: black;
+	font-size: 28px;
+}
+
+.vertical-half{
+	position: relative;
+	top: 50%;
+}
+
+.card-table-header{
+	font-size: 20px;
+	text-align: center;
+	padding: 5px;
+	color: white !important;
+	margin: 0;
+}
+
+.card-table-header .card-text{
+	color: white;
+}
+
+.vl {
+	border-right: 1px solid lightgray;
+	height: 99%;
+	width: 98%;
+	position: absolute;
+	margin-right: 10px;
+	top: 0;
+}
+
+.right{
+	right: 0;
+}
+
+.full-width{
+	width: 100%;
+}
+
+.right{
+	text-align: right;
+}
+
+.menu-card{
+	padding: 8px;
+	background-color: white;
+	color: black;
+	font-size: 1rem;
+}
+
+.menu-title-align{
+	min-height: 110px;
+}
+
+
+
+.bolder{
+	font-weight: bolder;
+	margin-top: 8px; /* should be padding of menu card */
+	align-self: center;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+	color: #FF9009;
+}
+
+.navbar-dark .navbar-nac .form-inline{
+	position: absolute;
+}
+
+#logoutButton{
+	position: absolute;
+	right: 10px;
+}
+
+.card-header{
+	font-weight: bold;
+	font-size: 140%;
+}
+
+.navbar-nav{
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.nav-item{
+	padding-right: 10px;
+	font-size: large;
+}
+
+#banner{
+	font-family: 'Lobster', cursive;
+	padding-top: 10px;
+	text-align: center;
+	color: #FF9009;
+	font-weight: bolder;
+	text-shadow: 0 0 8px black;
+	margin-bottom: 0;
+}
+
+.shadow{
+	box-shadow: 0 0 8px black;
+}
+
+table{
+	box-sizing: inherit;
+	width: auto;
+	align-self: center;
+	text-align: center;
+	align-items: center;
+}
+
+.container{
+	align-items: center;
+	align-self: center;
+	max-width: 80% !important;
+	opacity: 100% !important;
+	/*max-width: 80% !important;*/
+}
+
+.card{
+	/*width: 12rem;*/
+	width: auto;
+}
+
+.background{
+	width: 100% !important;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/*background-position: center;*/
+	height: inherit !important;
+}
+
+.op-40{
+	opacity: 40%;
+}
+
+-op-100{
+	opacity: 100%;
+}
+
+.landingpage{
+	background-image: url(../img/lunch-table-5929.jpg);
+}
+
+.menu-img{
+	background-image: url(../img/bg_catering.png);
+}
+
+.kitchen-img{
+	background-image: url(../img/kitchen.jpeg);
+}
+
+.storage-img{
+	background-image: url(../img/storage.jpg);
+}
+
+.white-font{
+	color: #FF9009;
+}
+
+tbody{
+	background-color: white;
+}
+
+.accounting-img{
+	background-image: url(../img/accounting.jpg);
+	opacity: 10%;
+}
+
+.admin-img{
+	background-image: url(../img/accounting.jpg);
+}
+
+.settings{
+	background-image: url(../img/settings.jpg);
+}
+
+.employees{
+	background-image: url(../img/employees.jpg);
+}
+
+
+
+
+
+.field > input{
+	min-height: 30px;
+}
+
+
+
+.btn-circle{
+	width: 30px; 
+	height: 30px; 
+	padding: 6px 0px; 
+	border-radius: 15px; 
+	font-size: 8px; 
+	text-align: center;
+	right: 10px;
+}
+
+.btn-rounded{
+	border: none;
+	width: auto; 
+	min-width: 60px;
+	height: 30px; 
+	padding: 6px 0px; 
+	border-radius: 15px; 
+	font-size: 12px; 
+	text-align: center;
+}
+
+.bottom{
+	bottom: 0;
+}
+
+.card-body{
+	padding: 0;
+	margin: 15px;
+}
+
+.card-footer{
+	background-color: white;
+	alignment: center;
+}
+
+.card-footer > button{
+	width: 100%;
+}
+
+#register-button{
+	margin-left: 15px;
+}
+
+.card-header > #allMeal{
+	margin-bottom: 20px;
+}
+
+.btn-rounded:hover{
+	background-color: #DC3545;
+}
+
+.table-w-btn{
+	align-items: center;
+}
+
+.wrapper {
+	text-align: center;
+}
+
+.button {
+	position: absolute;
+	top: 50%;
+}

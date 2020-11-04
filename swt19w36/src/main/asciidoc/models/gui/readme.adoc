@@ -1,0 +1,3 @@
+= Sammlung der GUI-Prototypen 
+
+In diesem Ordner sind alle in der Analysephase erstellten GUI-Prototypen als hinterlegt.

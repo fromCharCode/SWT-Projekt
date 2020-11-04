@@ -1,0 +1,83 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:insert="navigation::head"><title>Warenkorb</title></head>
+
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<body>
+<div class="background menu-img full-height">
+    <div class="ui container">
+
+        <h1 class="display-4" th:text="#{cart.title}">Warenkorb</h1>
+
+
+        <div class="ui container">
+
+            <div th:unless="${cart.empty}">
+                <table class="table table-borderless table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th th:text="#{cart.meals}">Gerichte</th>
+                        <th th:text="#{cart.count}">Anzahl</th>
+                        <th>Größe</th>
+                        <th th:text="#{cart.price}">Preis</th>
+                        <th th:text="#{cart.time}">Bestellt für</th>
+                        <th th:text="#{cart.removeItem}">Entferne dieses Gericht</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="item: ${cart}">
+                        <div>
+                            <td th:text="${item.productName}">LAH</td>
+                            <td th:text="${item.quantity}">10</td>
+
+                            <div th:if="${companyType != null}" th:switch="${companyType}">
+                                <td th:case="${companyType.COMPANY}">Groß</td>
+                                <td th:case="${companyType.KINDERGARTEN}">Klein</td>
+                                <td th:case="${companyType.SCHOOL}">Klein</td>
+                                <td th:case="*">Groß</td>
+                            </div>
+
+                            <div th:unless="${companyType != null}">
+                                <td>Groß</td>
+                            </div>
+
+                            <td th:text="${item.price}">5 Euro</td>
+                            <td th:text="${menu.getWeekdayFromMeal(item.getProduct())}">Tag</td>
+                        </div>
+                        <div>
+                            <td>
+                                <form class="ui form" method="post" th:action="@{/remove}">
+                                    <input type="hidden" name="item" th:value="${item.getProduct().getName()}">
+                                    <button class="btn btn-danger btn-sm" onclick="return confMealDel()" type="submit">
+                                        Entfernen
+                                    </button>
+                                </form>
+                            </td>
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="column" th:unless="${cart.empty}">
+                <form class="ui form" method="post" th:action="@{/order}">
+                    <button class="btn btn-success" type="submit" th:text="#{cart.buy}">Kaufen</button>
+                </form>
+            </div>
+            <div th:if="${cart.empty}">
+                <h1 th:text="#{cart.empty}">Leer</h1>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

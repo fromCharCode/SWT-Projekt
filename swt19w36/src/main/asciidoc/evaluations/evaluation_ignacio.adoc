@@ -1,0 +1,31 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2019/20
+// Auch wenn der Bogen nicht anonymisiert ist, dürfen Sie gern Ihre Meinung offen kundtun.
+// Sowohl positive als auch negative Anmerkungen werden gern gesehen und zur stetigen Verbesserung genutzt.
+// Versuchen Sie in dieser Auswertung also stets sowohl Positives wie auch Negatives zu erwähnen.
+
+**Von Ignacio Vazquez:**
+
+**Gruppe: 36**
+
+== Was habe ich gelernt?
+Ich habe gelernt wie man thymeleaf, spring und die salespoint framework funktionieren. Ich habe auch gelernt wie man in einen Softwareprojekt arbeiten sollte und wie man die wichtigste Tools dafur benutz. Zum Beispiel Git und Jenkins
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+Jeder hat seinen Teil gemacht. Es war auch natürlich schwer sich zu einigen als Gruppe. Ich fand dieses Projekt ziemlich cool, aber es war natürlich sehr viel Arbeit.
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+// Einschätzung der Arbeit mit den bereitgestellten und zusätzlich genutzten Frameworks. Was War gut? Was war verbesserungswürdig?
+Ich finde grundsätzlich toll, dass der Uni ihre eigene Framework hat. Die Dokumentation ist dabei leider zu wenig und verglichen mit anderen Frameworks, viel schwieriger zu lernen wegen der Mangel an Informationen die online verfügbar sind.
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+// Möglichst mit Beschreibung, warum die Umsetzung des von Ihnen angebrachten Vorschlages nötig ist.
+Entweder dieser Salespoint offentlich machen so dass mehr Informationen online verfügber sein können, oder ein haüfig benutzte Framework benutzen.
+
+== Feedback für den Tutor
+// Fühlten Sie sich durch den vom Lehrstuhl bereitgestellten Tutor gut betreut? Was war positiv? Was war verbesserungswürdig?
+Beide Tutoren waren echt cool, leider konnte Marvin uns gar nicht helfen Fehler zu beseitigen in unserem code.
+
+
+== Sonstiges und Anmerkungen
+// Welche Aspekte fanden in den oben genannten Punkten keine Erwähnung?
+Bitte ausführlichere Doku wie man Webseiten mit Salespoint, Thymeleaf und Java baut. 

@@ -1,0 +1,51 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2019/20
+// Auch wenn der Bogen nicht anonymisiert ist, dürfen Sie gern Ihre Meinung offen kundtun.
+// Sowohl positive als auch negative Anmerkungen werden gern gesehen und zur stetigen Verbesserung genutzt.
+// Versuchen Sie in dieser Auswertung also stets sowohl Positives wie auch Negatives zu erwähnen.
+
+**Von:** Jonas Bohmann
+
+**Gruppe:** 36
+
+== Was habe ich gelernt?
+
+Zusammenarbeit im Team, Projektmanagement, Auffrischung von HTML + CSS.
+
+Außerdem hab ich das Model-View-Controller Design Pattern besser verstanden und generall wie dynamische Webseiten funktionieren und aufgebaut sind.
+
+Auch Thymeleaf und grundlegede Sachen zur Webentwicklung (GET/POST etc.) hab ich gelernt.
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+
+Wir haben uns als Team schnell verstanden und uns fast jede Woche getroffen. Immer hilfsbereit und nett :)
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+
+Vielleicht die SalesPoint Dokumentation ein wenig erweitern, mit mehr Beispielen zum Beispiel.
+
+Die Fehlermeldungen von Hibernate und H2 waren oft frustrierend weil nicht klar war, was wir genau falsch gemacht haben.
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+
+- Eine extra Vorlesung zu Spring, SalesPoint und Co.
+
+- Analysephase eine Woche später starten, damit klar ist was wir überhaupt modellieren & entwickeln müssen und was nicht. Wir haben uns zum Beipsiel ziemlich ausführlich
+  eine Datenbank Klasse angeguckt und versucht diese zu modellieren. Erst später wussten wir, dass Spring und Hibernate alles rund um Datenbank "wegabstrahiert".
+
+
+== Feedback für den Tutor
+
+Wegen unseren Tutoren kann man sich nicht beklagen, die Tutoren im Lernraum waren auch stets offen für Fragen und haben immer eine Lösung gefunden.
+
+**Marvin**
+
+Sehr nett und immer aufmerksam bei den Meetings dabei. Insgesamt gute Zusammenarbeit und hat klare Ziele an uns gesetzt.
+
+**Julian**
+
+Nur kurz bei uns, aber auch immer offen für Fragen und engagiert. Gute Zusammenarbeit.
+
+
+== Sonstiges und Anmerkungen
+
+-

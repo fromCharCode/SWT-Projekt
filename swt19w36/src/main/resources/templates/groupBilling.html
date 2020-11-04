@@ -1,0 +1,53 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:insert="navigation::head"><title>Gruppenabrechnung</title></head>
+
+
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav sec:authorize="isAuthenticated()" th:include="navigation :: navigation"></nav>
+
+<body sec:authorize="hasRole('CUSTOMER')">
+<div class="background menu-img full-height">
+    <div class="container">
+        <br/>
+
+        <div class="row">
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Rechnung
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" th:text="'Preis: ' + ${cart.getPrice()}">Cras justo odio</li>
+                        <li class="list-group-item"
+                            th:text="'Preis abzüglich des Rabatts: ' + ${cart.getPrice().multiply(0.93)}">Cras justo
+                            odio
+                        </li>
+
+                        <li class="list-group-item">Bitte geben Sie den oben stehenden Betrag innerhalb der nächsten
+                            zwei
+                            Wochen ab.
+                        </li>
+                    </ul>
+                    <div class="card-footer">
+                        <form id="groupBill" th:action="@{groupBilling}" method="post">
+                            <button id="Button2" class="btn btn-success">Bezahle als Gruppenabrechnung</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+</body>
+</html>

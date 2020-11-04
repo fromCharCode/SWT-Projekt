@@ -1,0 +1,133 @@
+= Protokoll Gruppe 36
+
+Treffen am 28.10.2019
+
+Ort:     + APB, vor 2078
+Beginn:  + 15:00 Uhr
+Ende:    + 16:00 Uhr
+
+__Schriftführer:__ Justin Bürger
+
+*Nächstes Treffen:* + 
+04.11.2019, 15:00 Uhr, APB vor 2078
+
+__Teilnehmer:__
+
+- Dr. Marvin Triebel
+- David Schneider (Scrum Master)
+- Dominik Hirsch
+- Jonas Bohmann
+- Ignacio Vasquez
+- Justin Bürger
+
+== Bemerkungen
+- Jakob Schade ist offiziell kein Teil des Teams mehr
+- Dr. Triebel wird beim nächsten Meeting aus zeittechnischen Gründen kein Feedback zum aktuellen Stand geben können
+- Protokolle müssen detailierter werden
+- "Schulen" haben in der Aufgabenstellung die gleichen Eigenschaften wie Kindergärten, insbesondere hinsichtlich der Abrechnungsmodelle
+- Auch bei der Gruppenabrechnung darf zwischen Überweisung und Lastschrift gewählt werden
+- Der Nutzer entscheidet einmal, ob er per Lastschrift oder Überweisung zahlen möchte, kann sich jedoch jederzeit umentscheiden
+- Ein Lastschriftprotokoll für die Nutzer ist von Nöten
+- Rolle des Admins ist notwendig- es wird zwischen einem Boss (ein Administrator mit umfassenden Rechten) und dem Administrator (technischer Verantwortlicher) entschieden
+- Der Bericht aus der Aufgabenstellung muss auch im Webinterace erscheinen
+- Eine Passwort-Vergessen-Funktion ist nicht zwangsläufig nötig, nichtsdestotrotz praktisch
+- Der Nutzer soll alle seine vergangenen Bestellungen einsehen können
+- nach der Fertigstellung des Speiseplans muss dieser schnellstmöglich online gestellt werden
+- Es ist kein Bestellsystem für das Lager nötig (ein Bericht mit fehlenden Zutaten genügt)
+- Ein Warenkorb ist nötig
+- Die Portionsgröße muss bei der Bestellung sichtbar sein
+- Essen an Werktagen zu liefern ist ausreichend
+- Nutzer können sich nicht selber registrieren, sondern werden von einem Verantwortlichen ihres Betriebs erstellt, dieser muss außerdem die Nutzungsdauer des Accounts festlegen
+- Konten können gesperrt werden, bis auf weiteres oder auf eine bestimmte Zeit
+- Ein Mitarbeiter der Best-Food-Catering GmbH & Co KG muss den Speiseplan mit Rezepten und Preisen verwalten
+- Die Einheiten der Zutaten sollen möglichst flexibel gestaltet werden
+- Benutzerfreundlichkeit soll im Fokus stehen (keine technisch versierten Nutzer)
+- Inklusive Sprache soll verwendet werden
+- Rezepte müssen geändert werden können
+- Jede Zutat hat eine Mindestmenge- wird diese unterschritten, muss die Zutat nachbestellt werden
+
+
+== Aktueller Stand
+Die Videoshopaufgabe haben alle begonnen.
+Die Sequenzdiagramme für das Pflichtenheft sind erstellt, ebenso die Top-Level-Architektur und das Use-Case-Diagramm.
+
+== Zuständigkeiten
+// See http://asciidoctor.org/docs/user-manual/=tables
+
+Sämtliche Diagramme aus dem Pflichtenheft werden in Teamarbeit erstellt.
+
+[option="headers"]
+|===
+|Sektion des Pflichtenhefts |Verantwortlicher 
+|1     |Justin
+|2     |Justin
+|3     |Justin
+|4     |Justin
+|5     |Jonas
+|6     |Jonas
+|7     |Ignacio
+|8     |David
+|9     |David
+|10     |Dominik
+|12     |Dominik
+|13     |Ignacio
+|===
+
+Die Aufgaben zum Videoshop sind die folgenden:
+
+Aufgabe 1: Registrierung
+
+    Passwortfeld die Eingabe verstecken lassen (wie beim Login)
+    Crash abfangen wenn der Nutzername schon vergeben ist
+
+Optional:
+
+    Passwort bestätigen Feld einfügen
+    Kriterien (mind. Länge, etc.) für das Passwort einfügen
+
+Aufgabe 2: Bewertungen
+
+    Crash abfangen wenn eine Bewertung von mehr als 5 Sternen eingegeben wird
+    Dementsprechend Hinweis einfügen + “Kippschalter” an der Seite Limitieren (wie beim Bestellen)
+
+Optional:
+
+    Durchschnitt der Nutzer Bewertungen anzeigen (fortgeschritten)
+
+Aufgabe 3: Bestellung
+
+    Crash abfangen wenn man mehr Filme bestellt als vorhanden sind
+    bei der Bestellung anzeigen wie viele Kopien dieses Artikels schon im Warenkorb sind
+
+Optional:
+
+    Die Bestellung auch verringern lassen
+
+Aufgabe 4: Rechnung
+
+    Wenn man im Warenkorb auf einen Film klicked zur Seite des Filmes verlinken
+    Layout bei großen Preisen fixen
+
+Optional:
+
+    Filme aus dem Warenkorb entfernen (aus Bestellung löschen)
+
+Aufgabe 5: Kategorien
+
+    auf der Seite von Filmen anzeigen ob es sich um eine DVD oder BluRay handelt
+
+Optional:
+
+    einen Tab “Kategorien” einfügen im dem man auf eine Kategorie klicken kann und dann alle Filme in dieser Kategorie gezeigt bekommt (fortgeschritten)
+    (es reicht hier eine Liste der Kategorien die angezeigt werden sollen zu “hard-coden”)
+
+
+[option="headers"]
+|===
+|Aufgabe |Verantwortlicher 
+|1     |Ignacio
+|2     |Jonas
+|3     |Dominik
+|4     |David
+|5     |Justin
+|===

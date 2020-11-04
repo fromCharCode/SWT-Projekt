@@ -1,0 +1,241 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<head th:insert="navigation::head"><title>Speiseplan</title></head>
+
+<body sec:authorize="isAuthenticated()">
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="background menu-img full-height">
+    <div th:if="${menu != null}" class="container">
+
+        <h1 th:text="'Speiseplan für nächste Woche (KW' + ${menu.getCalenderWeek() + ')'}" class="display-4">
+            Speiseplan</h1>
+        <div class="card-group">
+
+            <div class="card bg-dark">
+                <div class="card-body card-table-header">
+                    <div>
+                        <div class="card-table-header">
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card bg-dark">
+                <div class="card-body card-table-header">
+                    <div>
+                        <div class="card-table-header">
+                            <p class="card-text">Montag</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-dark">
+                <div class="card-body card-table-header">
+                    <div class="card-table-header">
+                        <p class="card-text">Dienstag</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-dark">
+                <div class="card-body card-table-header">
+                    <div class="card-table-header">
+                        <p class="card-text">Mittwoch</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-dark">
+                <div class="card-body card-table-header">
+                    <div class="card-table-header">
+                        <p class="card-text">Donnerstag</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card bg-dark">
+                <div class="card-body card-table-header">
+                    <div class="card-table-header">
+                        <p class="card-text">Freitag</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- First Menu Row -->
+
+        <div class="card-group">
+            <div class="card alert-primary">
+                <div class="card-body text-center vertical-half">
+                    <p class="card-text bolder">Normal</p>
+                </div>
+            </div>
+            <div th:each="item : ${normalList}" class="card alert-primary menu-card">
+                <img class="card-img-top" th:src="@{resources/img/placeholder.png}"
+                     alt="Card image cap"/>
+                <div class="card-body text-center">
+
+                    <div class="card-title menu-title-align" th:text="${item.getName()}">
+                        Featured
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" th:text="${item.getPrice()}">3 EUR</li>
+                        <li class="list-group-item" th:text="${item.getDescription()}">Foody food</li>
+                    </ul>
+                </div>
+                <div class="card-footer text-center">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div th:if="${!cart.isEmpty()}">
+                                <div th:each="cartItem : ${cartItems}">
+                                    <p th:if="${cartItem.getProduct().getId()} == ${item.getId()}"
+                                       th:text="'Im Einkaufswagen: ' + ${cart.getItem(cartItem.getId()).get().getQuantity()}"></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <form class="ui form" method="post" th:action="@{/cart}">
+                                <input type="hidden" name="meal" th:value="${item.getId()}"/>
+                                <input type="hidden" name="day" value="Monday"/>
+                                <div class="field" style="margin-bottom: 20px">
+                                    <label for="num"></label>
+                                    <input id="num" name="num" type="number" min="1" max="5" step="1"
+                                           value="1"/>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit"
+                                            style="background-color: #FF9009; color: white; border: black"
+                                            class="btn btn-primary bottom">Bestellen
+                                    </button>
+                                </div>
+
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- -->
+
+        <div class="card-group">
+            <div class="card alert-warning">
+                <div class="card-body text-center vertical-half">
+                    <p class="card-text bolder">Diät</p>
+                </div>
+            </div>
+            <div th:each="item : ${dietList}" class="card alert-warning menu-card">
+                <img class="card-img-top" th:src="@{resources/img/placeholder.png}"
+                     alt="Card image cap"/>
+                <div class="card-body text-center no-padding">
+
+                    <div class="card-title menu-title-align" th:text="${item.getName()}">
+                        Featured
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" th:text="${item.getPrice()}">3 EUR</li>
+                        <li class="list-group-item" th:text="${item.getDescription()}">Foody food</li>
+                    </ul>
+                </div>
+                <div class="card-footer text-center">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div th:if="${!cart.isEmpty()}">
+                                <div th:each="cartItem : ${cartItems}">
+                                    <p th:if="${cartItem.getProduct().getId()} == ${item.getId()}"
+                                       th:text="'Im Einkaufswagen: ' + ${cart.getItem(cartItem.getId()).get().getQuantity()}"></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <form class="ui form" method="post" th:action="@{/cart}">
+                                <input type="hidden" name="meal" th:value="${item.getId()}"/>
+                                <input type="hidden" name="day" value="Monday"/>
+                                <div class="field" style="margin-bottom: 20px">
+                                    <label for="num"></label>
+                                    <input id="num" name="num" type="number" min="1" max="5" step="1"
+                                           value="1"/>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit"
+                                            style="background-color: #FF9009; color: white; border: black"
+                                            class="btn btn-primary bottom">Bestellen
+                                    </button>
+                                </div>
+
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-group">
+            <div class="card alert-success">
+                <div class="card-body text-center vertical-half">
+                    <p class="card-text bolder">Spezial</p>
+                </div>
+            </div>
+            <div th:each="item : ${specialList}" class="card alert-warning menu-card">
+                <img class="card-img-top" th:src="@{resources/img/placeholder.png}"
+                     alt="Card image cap"/>
+                <div class="card-body text-center no-padding">
+
+                    <div class="card-title menu-title-align" th:text="${item.getName()}">
+                        Featured
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" th:text="${item.getPrice()}">3 EUR</li>
+                        <li class="list-group-item" th:text="${item.getDescription()}">Foody food</li>
+                    </ul>
+                </div>
+                <div class="card-footer text-center">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div th:if="${!cart.isEmpty()}">
+                                <div th:each="cartItem : ${cartItems}">
+                                    <p th:if="${cartItem.getProduct().getId()} == ${item.getId()}"
+                                       th:text="'Im Einkaufswagen: ' + ${cart.getItem(cartItem.getId()).get().getQuantity()}"></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <form class="ui form" method="post" th:action="@{/cart}">
+                                <input type="hidden" name="meal" th:value="${item.getId()}"/>
+                                <input type="hidden" name="day" value="Monday"/>
+                                <div class="field" style="margin-bottom: 20px">
+                                    <label for="num"></label>
+                                    <input id="num" name="num" type="number" min="1" max="5" step="1"
+                                           value="1"/>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit"
+                                            style="background-color: #FF9009; color: white; border: black"
+                                            class="btn btn-primary bottom">Bestellen
+                                    </button>
+                                </div>
+
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div th:if="${menu == null}">
+                <div class="alert alert-danger" role="alert">
+                    Es gibt keinen Speiseplan für die nächste Woche!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

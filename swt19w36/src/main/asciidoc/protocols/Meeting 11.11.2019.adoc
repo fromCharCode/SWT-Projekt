@@ -1,0 +1,35 @@
+= Protokoll Gruppe 36
+
+Treffen am 11.11.2019
+
+Ort:     + APB, vor 2078
+Beginn:  + 15:00 Uhr
+Ende:    + 16:00 Uhr
+
+__Schriftführer:__ Justin Bürger
+
+*Nächstes Treffen:* + 
+11.11.2019, 15:00 Uhr, APB vor 2078
+
+__Teilnehmer:__
+
+- Dr. Marvin Triebel
+- David Schneider (Scrum Master)
+- Dominik Hirsch
+- Jonas Bohmann
+- Ignacio Vasquez
+- Justin Bürger
+
+== Bemerkungen
+- 
+
+== Aktueller Stand
+- Ignacio und David haben ihre Video-Shop-Aufgaben abgeschlossen
+- Mitarbeiter soll als Klasse, nicht als Interface modelliert werden
+
+== Aufgabenverteilung des Entwurfs
+1. Ignacio übernimmt das Management
+2. David ist verantwortlich für Constraints und die Architekturentscheidungen
+3. Jonas modelliert das Kitchen-Package, das Kontext-Modell und die Top-Level-Architecture
+4. Dominik bearbeitet das Online-Ordering-System
+5. Justin übernimmt das Inventory und Accounting Package sowie die Einleitung

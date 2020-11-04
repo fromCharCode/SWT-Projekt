@@ -1,0 +1,53 @@
+= Protokoll Gruppe 36
+
+Treffen am 11.11.2019
+
+Ort:     + APB, vor 2078
+Beginn:  + 15:00 Uhr
+Ende:    + 16:00 Uhr
+
+__Schriftführer:__ Justin Bürger
+
+*Nächstes Treffen:* + 
+11.11.2019, 15:00 Uhr, APB vor 2078
+
+__Teilnehmer:__
+
+- Dr. Marvin Triebel
+- David Schneider (Scrum Master)
+- Dominik Hirsch
+- Jonas Bohmann
+- Ignacio Vasquez
+- Justin Bürger
+
+== Bemerkungen
+- Issues sollten feingliedriger werden und sollten einem Milestone zugeordnet werden
+- JUnitTests sollen implementiert werden
+- Unterschied Basiskriterien/Musskriterien ist nicht klar umrissen
+- Branches müssen zusammengeführt werden
+- Bis Ende des Jahres muss die Funktionalität stehen
+
+== Aktueller Stand
+- Basisfunktionalität ist in Bearbeitung
+- Branches sind überwiegend noch vereinzelt
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|1    |Need of user subclasses |I think we do not need them. The relevant things can possibly be solved via roles -> controller actions can also be preauthorized. |David |open 
+|2    |No Company association |there is no real association on companies, since there are no companies yet.
+this is caused by the problem, that there is no registration possibility for companies.  |David |open 
+|3    |Implement kitchen.meal & kitchen.Menu classes | Implement the kitchen.Meal & kitchen.Menu classes and all their dependencies with proper usage of the Spring and Salespoint frameworks.
+
+This is needed for the OOS prototype to work.
+
+ |Jonas           |open
+|4 |show actual meals in menu |display the meals from current menu (located in kitchen) in the menu which is visible by users | Dominik | open
+|5 | Divide the ingredients of the same type | If we reorder, say, Tomatos, we have a problem:
+Tomato is already an ingredient and therefore already has a best before date. So every order of tomatos needs its own best before date | Justin | open
+|6 | How can ingredients be stored according to FIFO? | Every order of a specific Ingredient should be stored distincly (this is another issue). These distinct orders shall be stored according to the FIFO-principle | Justin | open
+|===

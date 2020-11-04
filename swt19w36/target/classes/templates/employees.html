@@ -1,0 +1,64 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head th:insert="navigation::head"><title>Mitarbeiter verwalten</title></head>
+
+<body>
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="background employees full-height">
+    <div class="container">
+        <h1 class="display-4">Mitarbeiter verwalten</h1>
+
+        <table class="table table-borderless table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Aktion</th>
+                <th>Vertragsablaufdatum</th>
+                <th>Neuer Vertrag</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="employee : ${users}">
+                <td th:text="${employee.forename}"></td>
+                <td th:text="${employee.surname}"></td>
+                <td th:text="${employee.email}"></td>
+                <td th:text="${employee.status.getDisplayName()}"></td>
+                <td>
+                    <a th:href="@{/deleteEmployee(employeeId=${employee.id})}" onclick="return confDelEmply()"
+                       class="btn btn-danger btn-sm">
+                        Mitarbeiter löschen
+                    </a>
+
+                    <a th:if="${!employee.isOpen()}" th:href="@{/activateEmployee(employeeId=${employee.id})}"
+                       class="btn btn-primary btn-sm">
+                        Mitarbeiter aktivieren
+                    </a>
+                </td>
+                <td th:text="${employee.expireDate}"></td>
+                <td>
+                    <form method="post" role="form" th:action="@{/setExpireDate(id=${employee.id})}"
+                          th:object="${userForm}">
+                        <input type="date" th:field="*{date}" required/>
+                        <button type="submit" class="btn btn-primary">Aktualisieren</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

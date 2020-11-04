@@ -1,0 +1,79 @@
+<<<<<<< HEAD
+= Protokoll Gruppe 36
+
+Treffen am 13.01.2020
+
+Ort:     + APB, vor 2078
+Beginn:  + 15:30 Uhr
+Ende:    + 16:30 Uhr
+
+__Schriftführer:__ Justin Bürger
+
+*Nächstes Treffen:* + 
+23.01.2020, 09:20 Uhr, Meeting-Raum APB 2. Stock, Abschlusspräsentation
+
+__Teilnehmer:__
+
+- Julian Catoni
+- David Schneider (Scrum Master)
+- Jonas Bohmann
+- Dominik Hirsch
+- Ignacio Vasquez
+- Justin Bürger
+
+== Bemerkungen
+
+- letztes Treffen vor der Abschlusspräsentation
+- Abschlusspräsentation: Aufteilung wie Zwischenpräsentation(10 Minuten Fragen(auch eigene Fragen an die andere Gruppe stellen mit Crosstesting-Report), 10 Minuten Demo(Rollenspiel/Szenerario- jemand spielt Kunden, jemanden spielt Mitarbeiter), 10 Min Ablauf Projekt: Entwurfsentscheidungen, Architektur(kurz!), was haben wir gelernt, was nehmen wir uns mit)
+- Einschreibung in jExam ist ab heute offen- alle müssen sich einschreiben
+- Freitag, den 17.01.2019 ist die Deadline: die Software muss fertig sein, im Laufe des Wochenendes wird der Schreibzugriff deaktiviert
+- Es reicht eine Liste mit den beliebtesten Gerichten (kein Diagramm)
+- Evaluations-Template soll von jedem ausgefüllt werden (bis Freitag)
+- Nach der Präsentation kommt noch eine Umfrage, mit allgemeinen Fragen zum Projekt
+
+== Aktueller Stand
+
+- Ergebnisse des Crosstesting: Sicherheitslücken müssen geschlossen werden
+- Jonas hat noch einen Bug in der Küche
+- Zusatzaufgabe steht noch aus: Dominik soll sie nicht allein erledigen! 
+
+=======
+= Protokoll Gruppe 36
+
+Treffen am 13.01.2020
+
+Ort:     + APB, vor 2078
+Beginn:  + 15:30 Uhr
+Ende:    + 16:30 Uhr
+
+__Schriftführer:__ Justin Bürger
+
+*Nächstes Treffen:* + 
+23.01.2020, 09:20 Uhr, Meeting-Raum APB 2. Stock, Abschlusspräsentation
+
+__Teilnehmer:__
+
+- Julian Catoni
+- David Schneider (Scrum Master)
+- Jonas Bohmann
+- Dominik Hirsch
+- Ignacio Vasquez
+- Justin Bürger
+
+== Bemerkungen
+
+- letztes Treffen vor der Abschlusspräsentation
+- Abschlusspräsentation: Aufteilung wie Zwischenpräsentation(10 Minuten Fragen(auch eigene Fragen an die andere Gruppe stellen mit Crosstesting-Report), 10 Minuten Demo(Rollenspiel/Szenerario- jemand spielt Kunden, jemanden spielt Mitarbeiter), 10 Min Ablauf Projekt: Entwurfsentscheidungen, Architektur(kurz!), was haben wir gelernt, was nehmen wir uns mit)
+- Einschreibung in jExam ist ab heute offen- alle müssen sich einschreiben
+- Freitag, den 17.01.2019 ist die Deadline: die Software muss fertig sein, im Laufe des Wochenendes wird der Schreibzugriff deaktiviert
+- Es reicht eine Liste mit den beliebtesten Gerichten (kein Diagramm)
+- Evaluations-Template soll von jedem ausgefüllt werden (bis Freitag)
+- Nach der Präsentation kommt noch eine Umfrage, mit allgemeinen Fragen zum Projekt
+
+== Aktueller Stand
+
+- Ergebnisse des Crosstesting: Sicherheitslücken müssen geschlossen werden
+- Jonas hat noch einen Bug in der Küche
+- Zusatzaufgabe steht noch aus: Dominik soll sie nicht allein erledigen! 
+
+>>>>>>> cb8b996b9c80f08b732b6ba8eaa6f0f15922fa33

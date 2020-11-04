@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:fragment="head">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+    <link rel="shortcut icon" type="image/png" href="/resources/img/placeholder.png"/>
+
+    <!-- for responsive purpose -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- our CSS -->
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}"
+          href="../static/resources/css/style.css" type="text/css"/>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="resources/js/index.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster&display=swap">
+
+    <!-- ICONS -->
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title th:text="${pageTitle}">Template Title</title>
+
+</head>
+
+<!-- ======== DO NOT TOUCH ANYTHING ABOVE ======== -->
+
+<body>
+<nav th:fragment="navigation">
+    <!-- reminder: the tag above must be a standalone not containing any additional class like below -->
+    <div class="navbar navbar-expand navbar-dark bg-dark" style="min-height: 50px;">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+
+                <!-- all -->
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" href="menu.html" th:href="@{/menu}">
+                        <i class="fa fa-fw fa-table"></i><span th:text="#{nav.home}">Speiseplan</span>
+                    </a>
+                </li>
+
+                <!-- sec:authorize="!hasAnyRole('BOSS','CUSTOMER')" -->
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" href="cart.html" th:href="@{/cart}">
+                        <i class="fa fa-fw fa-shopping-cart"></i><span th:text="#{nav.cart}">Cart</span>
+                    </a>
+                </li>
+
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <!-- sec:authorize="hasRole('CUSTOMER')" -->
+                    <a class="nav-link" href="myorders.html" th:href="@{/myorders}">
+                        <i class="fa fa-fw fa-envelope"></i><span th:text="#{nav.myOrders}">My orders</span>
+                    </a>
+                </li>
+                <!-- customers and companies-->
+                <li class="nav-item"
+                    sec:authorize="hasAnyRole('CUSTOMER', 'COMPANY', 'KITCHEN', 'STORAGE', 'ACCOUNTING')">
+                    <a class="nav-link" href="settings.html" th:href="@{/settings}">
+                        <i class="fa fa-fw fa-user"></i><span th:text="#{nav.settings}">Settings</span>
+                    </a>
+                </li>
+
+                <!-- for companies -->
+                <li class="nav-item" sec:authorize="hasAnyRole('COMPANY')">
+                    <a class="nav-link" href="employees.html" th:href="@{/employees}">
+                        <i class="fa fa-fw fa-group"></i><span th:text="#{nav.manageemployees}">Manage Employees</span>
+                    </a>
+                </li>
+
+                <!-- for BEST-FOOD-CATERING employees -->
+                <li class="nav-item" sec:authorize="hasAnyRole('BOSS', 'ACCOUNTING')">
+                    <a class="nav-link" href="accounting.html" th:href="@{/accounting}">
+                        <i class="fa fa-fw fa-line-chart"></i><span th:text="#{nav.accounting}">Accounting</span>
+                    </a>
+                </li>
+
+                <li class="nav-item" sec:authorize="hasAnyRole('KITCHEN', 'BOSS')">
+                    <a class="nav-link" href="kitchen.html" th:href="@{/kitchen}">
+                        <i class="fa fa-fw fa-cutlery"></i><span th:text="#{nav.kitchen}">Küche</span></a>
+                </li>
+
+                <li class="nav-item" sec:authorize="hasAnyRole('BOSS, STORAGE')">
+                    <a class="nav-link" href="stock.html" th:href="@{/inventory}">
+                        <i class="fa fa-fw fa-truck"></i><span th:text="#{nav.inventory}">Inventory</span></a>
+                </li>
+
+                <li class="nav-item" sec:authorize="hasAnyRole('ADMIN', 'BOSS')">
+                    <a class="nav-link" href="admin.html" th:href="@{/admin}">
+                        <i class="fa fa-fw fa-shield"></i><span th:text="#{nav.admin}">Admin-Panel</span>
+                    </a>
+                </li>
+
+                <!-- LOGOUT -->
+                <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post"
+                      sec:authorize="isAuthenticated()">
+                    <button type="submit" class="btn btn-outline-danger my-2 my-sm-0" id="logoutButton"
+                            th:text="#{nav.logout}">Logout
+                    </button>
+                </form>
+
+            </ul>
+        </div>
+        <br/>
+    </div>
+</nav>
+
+
+</body>
+</html>

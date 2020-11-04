@@ -1,0 +1,235 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head th:insert="navigation::head"><title>Neuen Speiseplan erstellen</title></head>
+
+<body>
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="background kitchen-img full-height">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <!-- style must go to css later -->
+                <div style="margin-bottom: 15px"></div>
+                <h1 class="display-4">Neuen Speiseplan erstellen</h1>
+                <div style="margin-bottom: 20px">
+                    <div style="width:800px; margin:0 auto">
+
+                        <div class="card">
+                            <div class="card-header">Neuen Speiseplan erstellen</div>
+                            <div class="card-body">
+
+                                <form id="addMenuForm" style="align-content: center;" method="post" role="form"
+                                      th:action="@{/kitchen/menus/new/post}" th:object="${menuForm}">
+
+                                    <!-- calenderweek -->
+                                    <div class="form-group">
+                                        <label style="font-size: large" for="calenderweek"
+                                               th:text="#{menu.week}">Kalenderwoche</label>
+                                        <input required id="calenderweek" type="week" class="form-control"
+                                               value="2020-W03"
+                                               th:field="*{datePickWeek}">
+                                    </div>
+
+                                    <!-- meals -->
+                                    <div>
+                                        <table class="table table-borderless table-striped">
+                                            <thead class="thead-dark">
+                                            <th></th>
+                                            <th>Montag</th>
+                                            <th>Dienstag</th>
+                                            <th>Mittwoch</th>
+                                            <th>Donnerstag</th>
+                                            <th>Freitag</th>
+                                            <thead class="thead-dark">
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <b>Normal</b>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select" th:field="*{normalMonday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${normals}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select" th:field="*{normalTuesday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${normals}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select"
+                                                            th:field="*{normalWednesday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${normals}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select" th:field="*{normalThursday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${normals}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select" th:field="*{normalFriday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option th:each="meal : ${normals}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>Spezial</b>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select" th:field="*{specialMonday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${specials}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select" th:field="*{specialTuesday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${specials}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select"
+                                                            th:field="*{specialWednesday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${specials}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select"
+                                                            th:field="*{specialThursday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${specials}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select" th:field="*{specialFriday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${specials}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>Diät</b>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select" th:field="*{dietMonday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${diets}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select" th:field="*{dietTuesday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${diets}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select" th:field="*{dietWednesday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${diets}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select" th:field="*{dietThursday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${diets}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select required class="custom-select" th:field="*{dietFriday}">
+                                                        <option value="" selected>Gericht wählen...</option>
+                                                        <option
+                                                                th:each="meal : ${diets}"
+                                                                th:value="${meal.getId()}"
+                                                                th:text="${meal.getName()}">Pommes
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <button id="uButton" type="submit" class="btn btn-success">Erstellen</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

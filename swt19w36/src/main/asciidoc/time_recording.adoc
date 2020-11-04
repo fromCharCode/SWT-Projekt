@@ -1,0 +1,36 @@
+= Zeiterfassung für Gruppe 36
+
+Notieren Sie die Zeit in Minuten für jeden Entwickler und – getrennt davon – für Team-Treffen pro Woche (Wochengranularität).
+Die individuell erfasste Zeit beinhaltet auch das Lesen von Dokumentationen, Besprechungen mit Teamkollegen und sonstige auf das Praktikum bezogene Aufgaben, jedoch *nicht* das Team-Treffen (= letzte Spalte).
+
+// See http://asciidoctor.org/docs/user-manual/#tables
+[option="headers"]
+|===
+|Woche |David Schneider |Justin Bürger |Jonas Bohmann |Ignacio Vazquez |Dominik Hirsch |Meeting |Durchschnittliche Arbeitzeit aller Studenten pro Woche
+|1  |300   |480   |300    |270    |350   |60 |1700
+|2  |940   |720    |960   |480    |1260    |60 |4360
+|3  |720   |600    |800    |900    |720   |60 |3740
+|4  |540  |600    |560    |420    |660   |60 |2780
+|5  |480   |600    |510 |420    |870    |45 |2880
+|6  |1560   |945    |1080    |940   |1250  |45 |5775
+|7  |540   |815    |600    |500    |980    |60 |3435
+|8  |600   |1200    |750   |400    |630   |45 |3580
+|9  |540   |730    |1200   |600    |900   |30 |3970
+|10  |420   |400    |240    |0    |760    |60 |1820
+|11  |480   |600    |360    |300    |650   |30 |2390
+|12  |2280   |300    |900   |250   |870   |60 |4600
+|SUM |9400 |7990 |8260 |5480 |9900 | |
+|===
+
+Bitte tragen Sie am Ende des Praktikums noch folgende weitere Werte ein:
+Summe der Arbeitsstunden pro Student:
+
+SUMME(SPALTE(DevX))
+
+Arbeitsstunden pro Woche pro Student:
+
+SUMME(SPALTE(DevX)) / 12
+
+Durchschnittliche Arbeitzeit aller Studenten pro Woche:
+
+(SUMME(SPALTE(Dev1)) + SUMME(SPALTE(Dev2)) + SUMME(SPALTE(Dev3)) + SUMME(SPALTE(Dev4)) + SUMME(SPALTE(Dev5)) +SUMME(SPALTE(Dev6))) / 6

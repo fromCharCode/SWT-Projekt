@@ -1,0 +1,54 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="navigation::head">
+    <title>Meine Bestellungen</title>
+</head>
+
+<body>
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="background menu-img full-height">
+    <div class="container">
+        <h1 class="display-4">Meine Bestellungen</h1>
+
+        <table class="table table-borderless table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Gericht</th>
+                <th>Datum</th>
+                <th>Preis</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td>
+                    <p th:each="meal : ${order.getOrderLines()}"
+                       th:text="${meal.getProductName() + ' x ' + meal.getQuantity()}"></p>
+                </td>
+                <td th:text="${order.getDateCreated().toLocalDate()}"></td>
+                <div th:if="${order.getIsGroupOrder()}">
+                    <td th:text="${order.getTotalPrice().multiply(0.93)}"></td>
+                </div>
+                <div th:unless="${order.getIsGroupOrder()}">
+                    <td th:text="${order.getTotalPrice()}"></td>
+                </div>
+                <td>
+                    <p th:text="${order.getOrderStatusToGerman()}"></p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

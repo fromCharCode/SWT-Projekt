@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="navigation::head">
+    <title>Best-Food-Catering</title>
+</head>
+<body>
+
+<div class="background landingpage full-height">
+    <div class="container">
+        <header>
+
+            <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+
+            <br/>
+        </header>
+
+        <br/>
+
+        <div class="card">
+            <div class="card-header form-inline">
+                <div class="col-md-8">
+                Wilkommen bei Best-Food-Catering!
+                </div>
+                <div class="col-md-4">Login</div>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="card-text">
+                            <h5>Als bewährte Catering-Firma aus Sachsen liefern wir stets frische und leckere Speisen an über 500 Kunden. Egal ob Kindertagestätte, Schule oder Unternehmen, mit unseren liebevoll gestalteten Mahlzeiten
+                            wird jeder satt.</h5>
+
+                            <div style="margin-bottom: 20px"></div>
+
+                            <h5>Unser wöchentlicher Speiseplan besteht aus drei sorgsam zusammengestellten Menü-Linien,
+                            sodass jeder sein Lieblingsgericht finden kann. Auch Diät-Köstler und Menschen mit Verdauungsproblemen gehen
+                            bei uns nicht wieder hungrig an die Arbeit.</h5>
+
+                            <div style="margin-bottom: 25px"></div>
+
+                            <h5>Haben wir Ihr Interesse geweckt? Die Registering bei uns ist kinderleicht! Falls ihre
+                            Organisation schon bei uns angemeldet ist, können Sie sich einfach mit einem neuen persönlichen Konto
+                            ihrer Organisation zuordnen. Ebenso können Sie ein neues Unternehmen, eine Kindertagestätte oder eine Schule bei uns
+                            registrieren, sodass Ihre Mitarbeiter bzw. Schüler bei uns bestellen können.
+                            </h5>
+                        </p>
+
+                        <div class="vl"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <form role="form" th:action="@{/login}" method="post">
+
+                            <div class="form-group">
+
+                                <label th:text="#{login.email}" for="emailInput">Email Adresse</label>
+                                <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i> </span>   experimental -->
+                                <input required type="email" class="form-control" id="emailInput"
+                                       aria-describedby="emailHelp"
+                                       placeholder="Email Adresse eingeben" name="username">
+
+                            </div>
+
+                            <div class="form-group">
+                                <label th:text="#{login.password}" for="passwordInput">Passwort</label>
+                                <input required type="password" class="form-control" id="passwordInput" name="password">
+                            </div>
+
+                            <div class="form-inline">
+                                <button type="submit" class="btn btn-primary active">Login</button>
+                                <br/>
+                                <div>
+                                    <a id="register-button" class="btn btn-success" th:href="@{/register}"
+                                       role="button">Klicke hier zum Registrieren...</a>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

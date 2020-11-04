@@ -1,0 +1,28 @@
+= Protokoll Gruppe 36
+
+Treffen am 02.12.2019
+
+Ort:     + APB, vor 2078
+Beginn:  + 15:00 Uhr
+Ende:    + 16:00 Uhr
+
+__Schriftführer:__ Justin Bürger
+
+*Nächstes Treffen:* + 
+16.12.2019, 15:00 Uhr, APB vor 2078
+
+__Teilnehmer:__
+
+- Dr. Marvin Triebel
+- David Schneider (Scrum Master)
+- Dominik Hirsch
+- Jonas Bohmann
+- Ignacio Vasquez
+- Justin Bürger
+
+== Bemerkungen
+- Nächste Woche die Zwischenpräsentation -> 10 Minuten Entwicklungsphase, 10 Minuten Use-Case
+- Neue Branches sollen für neue Features eröffnet werden.
+
+== Aktueller Stand
+- Basisfunktionalität ist fertiggestellt

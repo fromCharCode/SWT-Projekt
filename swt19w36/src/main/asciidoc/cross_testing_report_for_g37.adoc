@@ -1,0 +1,153 @@
+= Cross-Testing Feedback
+
+__Durchführende Gruppe:__ 36
+__Anwendung von Gruppe:__ 37
+
+== 0. Aufgabenteilung
+
+[options="header"]
+|===
+|Name |Bereich zum Testen
+|Justin | Lager, Buchhaltung
+|Jonas | Küche
+|Ignacio | Mitarbeitermanagement
+|David | Registrierungssystem
+|Dominik  | Online-Bestellsystem
+|Jakob | leider nicht dabei :(
+|===
+
+== 1. Getestetes System
+
+Welche Aufgabe/Problemstellung löst die Anwendung?
+
+* Küche
+    - Neue Gerichte erstellen (mit deren Rezept) ✔️
+    - Gerichte löschen  ❌
+    - Gerichte ändern ✔️
+    - Neuen Speiseplan erstellen und festlegen ✔️
+    - Täglichen Bericht mit allen Bestellungen, deren Anzahl, Größe und Rezept anzeigen ❌
+    
+* Online-Bestellsystem
+    - Essen bestellen ✔️
+    - Essen bezahlen ✔️ 
+    - Veröffentlichung des Speiseplans eine Woche im Voraus ✔️
+    - Wahl zwischen Lastschrift und Überweisung beim Bezahlen ✔️
+    - Implementierung von Einzel- und Gruppenbestellung (nicht ersichtlich, ob Gruppenbestellung implementiert)
+    - täglicher Bericht an Küche über bestellte Gerichte (nicht ersichtlich, ob implementiert)
+    
+* Lager
+    - Zutaten, deren MHD abgelaufen ist, löschen ✔️
+    - Neue "Artikel" bestellen und alte löschen ✔️
+    - Lager-Bericht mit Nachbestellungen ✔️
+    - Zutaten an und für sich bearbeiten ❌
+* Buchhaltung
+    - Bestellungen können eingesehen, bestätigt und gelöscht werden ✔️
+    - Kundendatensätze können nicht bearbeitet werden ❌
+* Mitarbeitermanagement
+    - Registrierung ist fehlgeschlagen ❌
+    - Neuer Boss oder Mitarbeiter erstellen ❌
+    - Kunden können bearbeitet und aktiviert/gelöscht werden ✔️
+    - Frist Verlängerung der Kunden ✔️
+    - Passwortänderung ✔️
+    - Mitarbeiterverwaltung ❌
+
+== 2. Fehler-Report
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+|===
+|Pfad |Parameter |Beschreibung |Rückgabe
+|kitchen/createRecipe | "Name" und "Rezept Typ auswählen" freilassen, und "Enter" (Form submitten) drücken wenn man im "Namen" Feld ist.  | Eine neue Zutat wird hinzugfügt, ohne das man auf den "+" Button drückt und eine Zutat ausgewählt hat | Zutat wurde hinzugefügt
+|kitchen/createRecipe | Zutat hinzufügen ohne Anzahl einzugeben | Die Zutat wird ohne Anzahl hinzugfügt |
+|online-bestellsystem/löschen | | Bestellung löschen funktioniert sowohl für jetzige, als auch nächste Woche nicht | Bestellung wird weiterhin angezeigt 
+|boss/alle-Bestellungen | | es werden nur offene Bestellungen angezeigt anstatt aller Bestellungen | offene Bestellungen aller Kunden |user/bestellen | bestellen z.b. "Two shots of vodka." am Montag und "A nearly dropped Crossaint" am Dienstag und diese bearbeiten, indem man etwas Neues am Mittwoch bestellt| wenn man bestellt und die Bestellung bearbeiten möchte, ändert sich nichts an der Bestellung | Bestellung bleibt gleich 
+|storekeeper/ingredientCatalog | | Neue Zutat mit zu hohem Preis kann nicht erstellt werden, wobei sich zurecht die Frage gestellt werden sollte, warum jemand Lebensmittel kaufen sollte, die mehr als 2,147,483,647 Euro pro Einheit kosten, aber vielleicht wäre eine detailierte Fehlermeldung ganz schick|
+|ordering/thisWeek | | leere Bestellung möglich. |
+|===
+
+== 3. Sonstiges
+* Optik der Anwendung
+    - Farblos
+* Fehlende Features
+* Interaktion mit der Anwendung (Usability)
+
+---
+
+* Allgemein
+    - Einheitliches und intuitives Design
+    - Mehr Farben oder Bilder würden das Design jedoch verbessern
+    - Einige Texte sind noch auf Englisch
+    - Der Text am Anfang ist einladent und eine gute Idee
+    - Automatische Suche bei Texteingabe in Dropdown Feldern ist intuitiv
+    
+
+* Küche
+    - Organisation "Schule" wird ignoriert
+    - Bericht von Bestellsystem -> Küche fehlt
+    - Admin/Boss von BFC sollte auch Zugriff auf Küche haben
+
+* Online-Bestellsystem
+    - Bezahlsystem gut gelöst
+    - man bezahlt erst und kann sich erst danach in der Rechnung anschauen, wieviel man insgesamt bezahlt hat - man muss das auch davor schon sehen können
+    - es steht nicht da, zu welcher Menülinie Gericht bei Bestellung gehört (Möglichkeit von Missverständnissen z.B. Vegatarier bestellt mit höherer Wahrscheinlichkeit etwas Nichtvegetarisches)
+    - man kann in der aktuellen Woche für bereits vergangene Tage bestellen (?)
+    - Voreinstellung "Kein Gericht ausgewählt" ist unschön und steht bei "Bestellungen ansehen" überall dabei
+    - man kann in einer Bestellung nur ein Gericht pro Tag bestellen, was nicht sinnvoll ist, da man ja für die Woche z.B. auch 3 Bestellungen aufgeben kann und so ein Gericht 3 Mal bestellen kann -> entweder nur eine Bestellung pro Woche oder Möglichkeit anzugeben, wie oft das Gericht bestellt werden soll
+    - Statustexte und Gerichtsnamen teilweise noch zu übersetzen
+    
+* Lager
+    - sehr schöne, intuitive Benutzeroberfläche, viele Erklärungen
+    - Zutaten (nicht Artikel) können im Nachhinein nicht geändert werden - der Preis für Lebensmittel ändert sich aber stetig
+    - Zutaten können nicht gelöscht werden
+    - Artikel, die abgelaufen sind, werden nicht "automatisch" gelöscht (wobei ich eure Lösung für gut halte, es geht ja darum, dass der Lagerist die verdorbenen Zutaten aus dem real existierenden Lager entfernt)
+     - Die Mindestmenge für Zutaten fehlt
+
+* Buchhaltung
+    - Verwaltung der Kunden fehlt (wird aber durch den Admin realisiert)
+    
+* Mitarbeiter Verwaltung
+    - Mann kann als Boss keine Kunden erstellen
+    - Mann kann kein neuer Boss oder Mitarbeiter erstellen 
+    - Kunden können bearbeitet und aktiviert/gelöscht werden 
+    - Frist Verlängerung war erfolgreich 
+    - Bei Admin wird die Option "Angestellte" angezeigt, obwohl der Admin das nicht machen sollte. 
+    - Mann kann keine Mitarbeiter verwalten 
+    
+   
+    
+    
+    
+== 4. Verbesserungsvorschläge
+
+Was kann noch weiter verbessert werden?
+
+* Küche
+    - Zutat bei kitchen/createRecipe wieder löschen
+    - Anweisungen für den Koch (z.B. Backofen auf 250 Grad vorheizen, dann Tomaten schälen....) zu den Rezepten hinzufügen
+    - Warnung bei nicht ausgefüllten Form Parametern auf Deutsch übersetzten
+    - Preis von Gerichten ist Integer, d.h. 3,99€ ist nicht erlaubt als Preis
+    - "Edit" Button in kitchen/listMeals auf Deutsch übersetzen
+    - Unklar, dass Gerichte erst bei "Speiseplan anzeigen" angezeigt werden, wenn man den jeweiligen Tag auswählt (vielleicht die Tage als Link/Button markieren)
+    - Wochentage auf Deutsch übersetzen
+    - Speiseplan braucht keine Gerichte am Samstag/Sonntag, da Companies und Kitas am Wochenende geschlossen sind
+    - Eine Such-Funktion für kitchen/ListMeals würde die Usability vereinfachen, wenn es sehr viele Gerichte gibt
+    - Unterscheidung der Menülinie (Normal/Special/Diet) evtl. anhand des Gericht selber, nicht anhand des Rezepts
+    - Unterscheidung zwischen Speisepläne Kita & Company nicht im Frontend sonder evtl. nur im Backend, da der einzige Unterschied, die Gericht-Größe, auch bei der Bestellung automatisch im Backend zugeordnet werden kann
+   
+* Online-Bestellsystem
+    - beim Bezahlen Preis anzeigen
+    - Löschen- und Bearbeitenbutton fixen
+    - verhindern, dass man für vergangene Tage bestellt
+    - anzeigen, wie oft das Gericht für besagte Woche bereits bestellt wurde
+    - anzeigen, zu welcher Menülinie die Essen gehören
+    - entweder bei der Bestellung angeben, wie oft man das Gericht bestellen möchte oder verhindern, dass man für die Woche mehr als eine Bestellung aufgeben kann
+    - mehr mit Farbe und Bildern beim Bestellen arbeiten
+    - Voreinstellung "Kein Gericht ausgewählt" entfernen
+    
+ * Lager
+    - Artikel werden auch dann gelöscht, wenn das MHD auf den heutigen Tag fällt (einen Tag länger dürfen sie noch)
+    - die Mindestmenge hinzufügen, die im Lager vorhanden sein muss
+    - Möglichkeit Preise zu ändern
+ * Mitarbeiterverwaltung
+    - Mitarbeiter sollten angezeigt und verwaltet werden können.
+
+   

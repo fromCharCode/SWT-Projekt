@@ -1,0 +1,130 @@
+= Cross-Testing Feedback
+
+__Durchführende Gruppe:__ 37
+__Anwendung von Gruppe:__ 36
+
+== Getestetes System
+Die Anwendung stellt eine Plattform für die Verwaltung eines Catering-Unternehmens
+zur Verfügung. Dabei werden alle Bereiche wie Küche, Lager, Buchhaltung abgedeckt
+und können über die Webseite verwaltet werden. Die Kunden der Unternehmens
+können über die Webseite ihre gewünschten Speisen bestellen.
+
+== Fehler-Report
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+|===
+|Pfad |Parameter |Beschreibung |Rückgabe
+|/inventory/stock |inputIngQuantity = -1 | falsche Umleitung nach falscher
+Eingabe -> Links danach nicht funktionsfähig | /catalog/all/new -> catalog/all/inventory/stock
+
+|/catalog/all/new |inputIngMinAmount = 2 | Fehler: gleiche Minimalmenge, warum?
+|/inventory/amountError
+
+|/inventory/stock |inputIngPrice = 1,99 | Kein "gewohntes" Format der Zahl da
+als String abgefragt |/catalog/all/new
+
+|/inventory/stock |inputIngName zu lang |keine Prüfung von zu langem Namen
+|/catalog/all/new
+
+|/inventory/stock |inputIngPrice = -1 |keine Prüfung von negativem Preis
+|/inventory/stock
+
+|/inventory/stock |inputIngName = "" |leerer Name nicht durch html abgefangen
+|/catalog/all/new
+|/employees | Button - Delete employee | Button funktioniert nicht. Davon abgesehen habe ich beide Button (delete/active) unter Sicherheitslücken aufgelistet, da diese leicht im Link manipuliert werden können. | /error
+|/conditions | Link unter /register |Seite existiert nicht und wird in keinem Controller abgefangen.| /error
+|/kitchen/meals/new |negativer preis |Ein negativer preis wird nur im HTML abgefangen und nicht
+überprüft -> Gerichte mit negativen Preis bestellbar | /kitchen/meals
+|/kitchen/new |negative Zutaten Menge | Nur im HTML überprüft -> Gerichte mit
+negativen Zutatenbedarf erstellbar | /kitchen/meals
+|/kitchen/new |bereits bestehender name |Gericht wird Angelegt, aber nur das
+erste Gericht mit diesem Namen wird in /kitchen/meals gelistet | /kitchen/meals
+|/kitchen | - | Jedes gericht kann nur einmal im Speisepflan vorkommen.
+Die anderen Gerichte rücken auf, so dass bei einer Dopplung immer die Letzten tage frei bleiben. | /kitchen
+|/kitchen/menus/new | negative, zu hohe Kallenderwoche/Jahr | Daten werden nicht
+serverseitig vallidiert | /kitchen/menus
+|/kitchen/meals/new | - | beliebig viele gleiche Zutaten sind hinzufügbar | /kitchen/meals/new/post
+|===
+== Sicherheitslücken
+/admin & WelcomeController
+
+1. Es ist möglich mit einem normalen Customer einen Employee mit einer beliebigen Rolle (Admin/Kitchen/etc.) anzulegen.
+2. Es ist möglich mit einem normalen Customer einen beliebigen Employee zu löschen.
+3. Es ist möglich mit einem normalen Customer die Daten eines beliebigen Employee zu ändern.
+4. Es ist möglich mit einem normalen Customer die abgelaufenen Zutaten anzusehen (/storageDefault)
+
+Zu /admin: Es wird in den zugehörigen Controllern (Welcome, Employee) nicht nach Rollen preauthorized. *Blocker Bug*
+
+/employees
+
+1. Die Buttons delete und activate lassen sich beliebig über das html manipulieren. Man kann beliebige id´s löschen lassen oder Nutzer mithilfe des namens freischalten. *Blocker Bug*
+
+_href="/deleteEmployee?employeeId=11"_; _href="/activateEmployee?name=James%20Cook"_
+
+/register
+
+1. Es ist möglich die Checkbox mit den AGB´s nicht auszuwählen und sich registrieren zu können, wenn man das html verändert. -> Überprüfung im backend ob die Checkbox gesetzt wurde (Validator) *Minor Bug*
+
+== Sonstiges
+* Optik der Anwendung
+** zusammenhängendes Design auf ganzer Website
+* Fehlende Features
+** Nachbestellung von Zutaten
+* Interaktion mit der Anwendung (Usability)
+1. /admin: Im Adminpanel wird bei der Delete-Funktionalität die Eingabe einer ID vorausgesetzt. Dies kann man nutzerfreundlicher gestalten, indem man die ID innerhalb des Buttons speichert. Außerdem ist dies fehleranfällig.
+2. /admin: Im Adminpanel wird bei der Change Data Funktionalität die Eingabe einer ID vorausgesetzt. Dabei ist das entsprechende Feld mit einem Namen "Max" geprefillt. Das verwirrt den Nutzer. Vorschlag: Umsetzung der Funktionalität mit einem Button neben jedem Employee, welcher direkt die ID beinhaltet.
+3. Alle Buttons werden dauerhaft angezeigt( auch nach der Betätigung) was teilweise keinen wirklichen Sinn ergibt -> z.B bei /employees wenn der Nutzer bereits aktiviert ist, bleibt der Button Activate employee bestehen.
+
+== Verbesserungsvorschläge
+* Eingabefelder den Typen entsprechend anpassen:
+** Preis & Menge bei neuen Zutaten als number
+** required="required" setzen
+** Bedingunen an Eingaben stellen => nicht nur im backend prüfen
+** Länge der Namen limitieren
+
+* Anpassung des UI-Designs:
+** dezenter (riesige Überschriften)
+
+* Storage:
+** Zutaten nach MHD sortieren
+** Einheiten anzeigen
+
+* Error-Handling:
+** falsche Eingaben direkt bei den Input-Feldern abfangen
+*** hier explizit falsche Eingaben welche die aufgerufene Methode abstürzen lassen würde (z.B.: doppelte Email-Adresse/Username)
+
+* Registrierung von Einrichtungen
+** Nur der Admin/Boss von BFC sollte Einrichtungen erstellen dürfen, da sonst ungeprüft sich jeder anmelden kann. Die Einrichtung ist gleich freigeschaltet und kann Nutzer löschen und aktivieren.
+
+* Rollen
+** Ihr nutzt das Rollensystem von Spring sehr komisch. Jede Rolle unterscheidet ihr mit der toString() Methode, was nicht im Sinne des Entwicklers ist. Außerdem hat eure Employee Klasse ein Attribut role, welches einen String akzeptiert. Rollen werden im UserAccount des Customer abgespeichert. Wenn ein Customer nun mehrere Rollen bekommt, können diese garnicht mehr im role Attribute des Customers abgebildet werden. -> siehe dazu CustomerDataInitializer
+
+* Customer
+** Verknüpft eure Customer nicht über den Namen eurer Einrichtung mit der Einrichtung, sondern mit der Einrichtung selbst. (Also statt String | Company) Dadurch fällt es euch später leichter mit den ServiceClasses zu arbeiten.
+** Bei Anlage einen Customers setzt ihr ihn 2x auf den Status "Waiting".
+** Methode setEmail() sollte IllegalArgumentExcpeption werfen, falls diese Email schon verwendet wird. Gleichermaßen der Konstruktor.
+
+* Kitchen
+** serverseitiges Überprüfen der Werte
+** eigabe der Kallenderwoche als datepicker oder weekpicker
+
+* Bestellung
+** es wird kein Preis der Produkte im Speiseplan angezeigt
+** Ist es gewollt, dass man beliebig viele Gerichte pro Tag bestellen kann?
+** Es wäre gut, wenn man schon für die nächste Woche bestellen kann und nicht nur für die aktuelle
+** Ich sehe keine Möglichkeit, eine abgegebene Bestellung zu bearbeiten. Mit uns hat Marvin das so abgemacht, dass die Bestellung bis zum Vortag geändert werden können soll
+** Ich habe keine Möglichkeit gefunden, von BF Seite alle Bestellungen anzusehen oder sie bei einem Zahlungseingang auf PAID zu setzen
+
+
+== Fazit
+[quote, schlaue deutsche Person]
+____
+Nicht geschimpft ist genug gelobt.
+____
+
+Nach all dem negativen Feedback möchten wir noch eine Sache klar stellen:
+Wir fanden eure Anwendung auf keinen Fall schlecht. Ja, es gibt noch
+Verbesserungspotenzial, aber das gibt es bei uns sicher auch. Deshalb macht
+so weiter und dann könnt ihr auf ein ziemlich gutes Ergebnis kommen.
+
+LG Gruppe 37 :)

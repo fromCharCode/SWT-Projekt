@@ -1,0 +1,151 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="navigation::head">
+    <title>Einzelabrechnung</title>
+</head>
+
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<body>
+<div class="background menu-img full-height">
+    <div class="container">
+
+        <h1 class="display-4" th:text="'Einzelabrechnung: ' + ${cart.getPrice()}">Einzelabrechnung</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Lastschrift</div>
+                    <div class="card-body">
+                        <form id="debitsCardForm" method="post" role="form" th:action="@{/payOrderDC}"
+                              th:object="${debitsCardForm}">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Card name -->
+                                    <div class="form-group">
+                                        <label th:text="#{debitCard.name}"></label>
+                                        <input required name="name" type="text" placeholder="MasterCard"
+                                               class="form-control" th:field="*{cardName}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Card association name -->
+                                    <div class="form-group">
+                                        <label th:text="#{debitCard.associationName}">Austellende Bank</label>
+                                        <input required name="name" type="text"
+                                               placeholder="Ostsächsische Sparkasse Dresden"
+                                               class="form-control" th:field="*{cardAssociationName}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Kartennummer -->
+                                    <div class="form-group">
+                                        <label th:text="#{debitCard.number}">Kartennummer</label>
+                                        <input required name="name" type="text" placeholder="2707168763430235"
+                                               class="form-control"
+                                               th:field="*{cardNumber}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Verifikationscode -->
+                                    <div class="form-group">
+                                        <label th:text="#{debitCard.verificationCode}">CVV Verifikationscode</label>
+                                        <input required name="name" type="text" placeholder="155" class="form-control"
+                                               th:field="*{cardVerificationCode}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Name auf Karte -->
+                                    <div class="form-group">
+                                        <label th:text="#{debitCard.UserName}">Name auf der Karte</label>
+                                        <input required name="name" type="text" placeholder="Max Mustermann"
+                                               class="form-control"
+                                               th:field="*{nameOnCard}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Adresse -->
+                                    <div class="form-group">
+                                        <label th:text="#{debitCard.address}">Adresse</label>
+                                        <input required name="name" type="text"
+                                               placeholder="Musterstraße 12 01219 Dresden"
+                                               class="form-control"
+                                               th:field="*{billingAddress}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- gültig seit -->
+                                    <div class="form-group">
+                                        <label th:text="#{debitCard.validFrom}">Karte gültig seit</label>
+                                        <input required name="name" type="date" placeholder="2008-11-24"
+                                               class="form-control"
+                                               th:field="*{validFrom}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Auslaufdatum -->
+                                    <div class="form-group">
+                                        <label th:text="#{debitCard.expiryDate}">Auslaufdatum</label>
+                                        <input required name="name" type="date" placeholder="2020-12-31"
+                                               class="form-control"
+                                               th:field="*{expiryDate}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br/>
+                            <button id="Button1" type="submit" class="btn btn-success">Bezahlen per Lastschrift</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header" th:text="'Überweisung bis: ' + ${bis}"></div>
+                    <div class="card-body">
+                        <form id="chequeForm" th:action="@{/payOrderCH}" method="post">
+                            <h3>Zahlungsempfänger</h3>
+                            <h4>Best-Food-Catering GmbH</h4>
+                            <br>
+                            <h3>Ausstellungsdatum</h3>
+                            <h4 th:text="${time}"></h4>
+                            <br>
+                            <h3>Name der Bank</h3>
+                            <h4>Ostsächsische Sparkasse Dresden</h4>
+                            <br>
+                            <h3>Bankadresse</h3>
+                            <h4>Nöthnitzer Straße 46</h4>
+                            <h4>01187 Dresden</h4>
+                            <br>
+                            <h3>Bankidentifikationsnummer</h3>
+                            <h4>8748 45</h4>
+                            <br>
+                            <button id="Button2" class="btn btn-success">Bezahlen per Überweisung</button>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

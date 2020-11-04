@@ -1,0 +1,105 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head th:insert="navigation::head"><title>Lager</title></head>
+
+<body>
+
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+
+<div class="container">
+
+    <h1 class="display-4">Lager</h1>
+
+    <table class="table table-borderless table-striped">
+
+        <thead class="thead-dark">
+        <th scope="col">Zutat</th>
+        <th scope="col">Menge</th>
+        <th scope="col">MHD</th>
+        <th scope="col">Mindestmenge</th>
+        <th scope="col">Einheit</th>
+        <th scope="col">Aktion</th>
+        </thead>
+        <tbody th:remove="all-but-first">
+        <tr th:each=" item : ${stock}">
+            <td th:id="${item.name}" th:text="${item.name}">Tomaten</td>
+            <td th:text="${item.quantity}">10</td>
+            <td th:text="${item.bestBefore}">30.11.2020</td>
+            <td th:text="${item.minAmount}">30</td>
+            <td th:text="${item.metric}">KILOGRAM</td>
+            <td>
+                <button th:href="@{/inventory/delete(ingredientId=${item.id})}" class="btn btn-danger btn-sm"
+                        onClick="return confDelIngredient()">
+                    Zutat löschen
+                </button>
+            </td>
+            <!--
+            <td>
+                <a class="btn btn-danger btn-sm" th:onclick ="'javascript:fill(\'' + ${item.name} + '\');'">
+                    Auffüllen
+                </a>
+            </td>
+            -->
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <h1 class="display-4">Neue Zutat hinzufügen</h1>
+
+    <form method="post" role="form" th:action="@{/inventory/stock}" th:object="${ingredientForm}">
+        <div class="form-group">
+            <label for="inputIngName" style="font-size: large">Zutatenname</label>
+            <input class="form-control" id="inputIngName" th:name="name" th:field="*{name}" placeholder="Name"
+                   required/>
+        </div>
+        <div class="form-group">
+            <label for="inputIngPrice" style="font-size: large">Preis</label>
+            <input class="form-control" input="number" id="inputIngPrice" th:name="price" th:field="*{price}"
+                   placeholder="2" min="0.0001" max="1000000" step="0.0001" required/>
+        </div>
+
+        <div class="form-group">
+            <label style="font-size: large">Einheit</label>
+            <select id="inputIngMetric" class="form-control" th:field="*{metric}">
+                <option th:value="KILOGRAM">Kilogram</option>
+                <option th:value="LITER">Liter</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputIngMinAmount" style="font-size: large">Minimalmenge</label>
+            <input class="form-control" type="number" id="inputIngMinAmount" th:name="minAmount" th:field="*{minAmount}"
+                   placeholder="2" min="0.0001" max="1000000" step="0.0001" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="inputIngDate" style="font-size: large">Haltbar bis:</label>
+            <input class="form-control" type="date" id="inputIngDate" th:name="date" th:field="*{bestBefore}"
+                   placeholder="" required/>
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputIngQuantity" style="font-size: large">Menge</label>
+
+            <input class="form-control" type="number" id="inputIngQuantity" th:name="quantity" th:field="*{quantity}"
+                   placeholder="4" min="0.0001" max="1000000" step="0.0001" required/>
+        </div>
+
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" onClick="return inputError()">Neue Zutat anlegen</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

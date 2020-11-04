@@ -1,0 +1,30 @@
+= Protokoll Gruppe 36
+
+Treffen am 21.10.2019
+
+Ort:     + APB, vor 2078
+Beginn:  + 15:00 Uhr
+Ende:    + 16:00 Uhr
+
+__Schriftführer:__ Justin Bürger
+
+*Nächstes Treffen:* + 
+21.10.2019, 15:00 Uhr, APB vor 2078
+
+__Teilnehmer:__
+
+- Dr. Marvin Triebel
+- David Schneider (Scrum Master)
+- Dominik Hirsch
+- Jonas Bohmann
+- Ignacio Vasquez
+- Justin Bürger
+
+== Bemerkungen
+- Es gibt neben Mitarbeitern und Kunden keine weiteren Rollen in der Aufgabenstellung
+- Die Dimension der Pflichtenhefts soll sich an der des Pflichtenhefts des Videoshops orientieren
+- Die optionalen Aufgaben zum Features sind nicht wirklich optional: eine Begründung ist nötig, falls sie nicht realisiert werden können
+
+== Aktueller Stand
+- Guestshop-Erweiterung mit den E-Mails läuft bei allen
+- 

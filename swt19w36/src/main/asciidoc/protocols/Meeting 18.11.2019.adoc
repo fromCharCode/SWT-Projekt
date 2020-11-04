@@ -1,0 +1,33 @@
+= Protokoll Gruppe 36
+
+Treffen am 11.11.2019
+
+Ort:     + APB, vor 2078
+Beginn:  + 15:00 Uhr
+Ende:    + 16:00 Uhr
+
+__Schriftführer:__ Justin Bürger
+
+*Nächstes Treffen:* + 
+11.11.2019, 15:00 Uhr, APB vor 2078
+
+__Teilnehmer:__
+
+- Dr. Marvin Triebel
+- David Schneider (Scrum Master)
+- Dominik Hirsch
+- Jonas Bohmann
+- Ignacio Vasquez
+- Justin Bürger
+
+== Bemerkungen
+- Dr. Triebel verlässt die TU zum Ende des Jahres- die Übergabe hinzu Frau Dr. Demuth findet zum 9.12.2019 statt
+- Zum 9.12. ist außerdem eine Zwischenpräsentation mit der Basisfunktionalität zu erstellen
+- Die Zwischenpräsentation soll die Analyse, den Entwurf und die Implementierung beinhalten
+- Die OOP-Phase beginnt: Issues sollen im Github angelegt werden, die Unit-Tests sollen implementiert werden
+- Anmerkung zur Entwicklerdokumentation: die Authentification muss auch ein Package sein
+- Anmerkung zur Entwicklerdokumentation: meal taucht in mehreren Packages auf, sollte aber nur in einem sein
+
+== Aktueller Stand
+- Die Entwicklerdokumentation liegt vor
+- Die Prototypen von Justin und Ignacio sind noch nicht fertig

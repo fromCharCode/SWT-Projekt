@@ -1,0 +1,161 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="navigation::head">
+    <title>Buchhaltung</title>
+</head>
+
+<body>
+<div class="background landingpage">
+    <header>
+        <h1 class="display-2" id="banner">Best-Food-Catering</h1>
+    </header>
+
+    <br/>
+</div>
+<nav th:include="navigation :: navigation"></nav>
+<div class="background admin-img full-height">
+    <div class="container">
+        <h1 class="display-4 white-font">Buchhaltung</h1>
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header">Kunden</div>
+                    <div class="card-body">
+
+                        <table class="table table-borderless table-striped">
+
+                            <thead class="thead-dark">
+                            <th scope="col">ID</th>
+                            <th scope="col">E-Mail</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Sperren</th>
+                            <th scope="col">Entsperren</th>
+                            </thead>
+                            <tbody th:remove="all-but-first">
+                            <tr th:each=" item : ${customers}">
+                                <td th:text="${item.id}">Tomaten</td>
+                                <td th:text="${{item.email}}">10</td>
+                                <td th:text="${item.status.getDisplayName()}">30.11.2020</td>
+                                <td>
+                                    <a th:href="@{/accounting/deactivate(id=${item.id})}" class="btn btn-danger btn-sm"
+                                       onClick="return confDelAcc()">
+                                        Sperre Nutzer
+                                    </a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/accounting/activateCustomer(id=${item.id})}"
+                                       class="btn btn-success btn-sm">
+                                        Entsperre Nutzer
+                                    </a>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Organisationen
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-striped">
+
+                            <thead class="thead-dark">
+                            <th scope="col">ID</th>
+                            <th scope="col">E-Mail</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Sperren</th>
+                            <th scope="col">Entsperren</th>
+                            </thead>
+                            <tbody th:remove="all-but-first">
+                            <tr th:each=" item : ${companies}">
+                                <td th:text="${item.id}">Tomato</td>
+                                <td th:text="${item.email}">10</td>
+                                <td th:text="${item.status.getDisplayName()}">30.11.2020</td>
+                                <td>
+                                    <a th:href="@{/accounting/deactivateCompany(id=${item.id})}"
+                                       class="btn btn-danger btn-sm"
+                                       onClick="return confDelOrg()">
+                                        Sperre Organisation
+                                    </a>
+                                </td>
+                                <td>
+                                    <a th:href="@{/accounting/activateCompany(id=${item.id})}"
+                                       class="btn btn-success btn-sm">
+                                        Entsperre Organisation
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <br/>
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header">Alle Bestellungen</div>
+                    <div class="card-body">
+                        <table class="table table-borderless table-striped">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>Gericht</th>
+                                <th>Name</th>
+                                <th>ID</th>
+                                <th>Datum</th>
+                                <th>Preis</th>
+                                <th>Abgeschlossen</th>
+                                <th>Aktion</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr th:each="order : ${allOrders}">
+                                <td>
+                                    <p th:each="meal : ${order.getOrderLines()}"
+                                       th:text="${meal.getProductName() + ' x ' + meal.getQuantity()}"></p>
+                                </td>
+                                <td th:text="${order.getAttachedCustomerName()}"></td>
+                                <td th:text="${order.getId()}"></td>
+                                <td th:text="${order.getDateCreated().toLocalDate()}"></td>
+                                <div th:if="${order.getIsGroupOrder()}">
+                                    <td th:text="${order.getTotalPrice().multiply(0.93)}"></td>
+                                </div>
+                                <div th:unless="${order.getIsGroupOrder()}">
+                                    <td th:text="${order.getTotalPrice()}"></td>
+                                </div>
+                                <div>
+                                    <td th:text="${order.getOrderStatusToGerman()}">Geschlossen</td>
+                                    <td th:if="${order.getOpened()} == true and ${order.getOrderStatus().toString()} == 'COMPLETED'">
+                                        <form class="ui form" method="post" th:action="@{/accept}">
+                                            <input type="hidden" name="order" th:value="*{order.getId()}">
+                                            <button class="btn btn-success" onclick="return confOrderDek()"
+                                                    type="submit">Akzeptiere
+                                            </button>
+                                        </form>
+                                    </td>
+                                </div>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

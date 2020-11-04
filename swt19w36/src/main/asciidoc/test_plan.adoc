@@ -1,0 +1,112 @@
+= Test-Plan swt19w36 - Best-Food-Catering
+:project_name: swt19w36
+:toc:
+
+== 0. Aufgabenteilung
+
+[options="header"]
+|===
+|Name | Unit & integration tests in section 8
+|Justin |Inventory, Accounting
+|Jonas  |Kitchen
+|Ignacio | Management
+|David | Authentication, Company Management
+|Dominik |Online-Ordering-System
+|===
+
+== 1. Introduction
+This test-plan is a simplified version of the IEEE 829-1998 template and lists
+the requirements needed for several unit tests for the developers.
+
+== 2. Test schema
+We'll use the following schema for each test:
+
+* U - Unit Test
+* I - Integration Test
+
+Example:
+
+* U-1, U-12, I-4
+
+== 3. Tests
+
+=== 3.1 To be tested functionalities
+* Every internal class and its methods
+
+=== 3.2 Not to be tested functionalities
+* Spring Framework
+* Spring Boot
+* Salespoint
+* Java Persistence API
+
+== 6. Approach
+Each class will be tested with JUnit. Integration tests will follow the bottom-up principle.
+
+== 7. Environmental requirements
+
+No special hardware or software is needed for the tests to run. The application
+has to be built & launched with Maven, which is already included in our project.
+
+The web application will launch on localhost:8080,
+so no internet connection is required.
+
+No additional data has to be entered for the tests.
+
+
+
+
+== 8. Test cases & responsibility
+
+[options="headers"]
+|===
+|ID |Case  |Pre-condition |Input |Output | Responsible Developer
+|U0 |getKitchenDashboardNotLoggedIn  |Not Logged in as Kitchen Staff |get("/kitchen/") |status().is(403) |Jonas
+|U1 |getKitchenDashboard  |Logged in as Kitchen Staff |get("/kitchen/")  |view().name(kitchen) |Jonas
+|U2 |createMenu  |Logged in as Kitchen Staff |post("/kitchen/newmenu")  |Menu object will be created & saved in repository |Jonas
+|U3 |createMenuWithoutMeals  |Logged in as Kitchen Staff  |post("/kitchen/newmenu") with no meals  |Menu object will not be created |Jonas
+|U4 |createMeal |Logged in as Kitchen Staff |post("/kitchen/newmeal")  |Meal object will be created & saved in repository |Jonas
+|U5 |createMealWithoutRecipe |Logged in as Kitchen Staff  |post("/kitchen/newmeal") with an invalid recipe  |Meal object will not be created  |Jonas
+|U6 |changeMenu |Logged in as Kitchen Staff |post("/kitchen/menu/{id}")  |Menu object will changed with adjusted meal |Jonas
+|U7 |changeMenuWithNonExistingMeal |Logged in as Kitchen Staff & Meal to be added is non-existing |post("/kitchen/menu/{id}")  |Menu object will not be changed |Jonas
+|U8 |changeMeal |Logged in as Kitchen Staff |post("/kitchen/meal/{id}")  |Meal object will be created & saved in repository |Jonas
+|U9 |changeMealWithNonExistingMeal |Logged in as Kitchen Staff & Meal doesn't exist |post("/kitchen/meal/{id}") |throw MealNotFoundException |Jonas
+|U10 |changeMealWithInvalidPrice |Logged in as Kitchen Staff |post("/kitchen/meal/{id}") |Meal object will not be saved with changes |Jonas
+|U11 |getMealSize |Logged in as Kitchen Staff |get("/kitchen/meal/{id}") |Either returns "Big" or "Small" |Jonas
+|U12 |getMealFoodType |Logged in as Kitchen Staff |get("/kitchen/meal/{id}") |Either returns "Normal", "Diet" or "Special" |Jonas
+|U13 |getMealPrice |Logged in as Kitchen Staff |get("/kitchen/meal/{id}") |Returns a valid price |Jonas
+|U14 |getMealRecipe |Logged in as Kitchen Staff |get("/kitchen/meal/{id}") | Returns a list of ingredients and their quantity needed for this meal |Jonas
+|U15 |getReportToKitchen  |Logged in as Kitchen Staff |get("/kitchen/report")  |PDF as ByteArrayOutputStream |Jonas
+|U16 |getMenu |Logged in |get("/") |view().name(Welcome) |Dominik
+|U17 |getCart |logged in |get("/cart") | view().name(Cart) |Dominik
+|U18 |addToCart |logged in |post("/cart") |selected meals will be saved in cart |Dominik
+|U19 |confirm order |cart not empty |post("/confirm") |new order will be created |Dominik
+|U20 |lockAccount|logged in as accountant|post("/lock")|user account will be locked|Justin
+|U21 |viewAllOrders|logged in as accountant|post("orders/all")|shows all the orders of one account, a company or all customers in a given time period|Justin
+|U22 |sendEmail|Storekeeper and Email exist|checkInventory has returned items|an Email gets send to the Storekeeper|Justin
+|U23 |sendEmailFail|Storekeeper and/or Email do not exist|none|ThrowNullException|Justin
+|U24 |checkInventory|Inventory exists|none|returns all the items which need to be reordered|Justin
+|U25 |refreshReport|logged in as storekeeper|post("/refreshReport")| refreshes the report of all the missing items|Justin
+|I1 |KitchenIntegrationTest |U1 - U15 |Logged in as Kitchen Staff |Correct Unit tests |Jonas
+|U26 |accessAdminPanel|logged in as admin|post(„/admin“)| gives access to the admin to the admin panel |Ignacio
+|U27|registerEmployee|logged in as admin|post(„/registerEmployee“)| registers a new employee| Ignacio
+|U28|registerEmployee|logged in as Boss|post(„/registerEmployee“)| registers a new employee| Ignacio
+|U29|changeEmployee|logged in as Boss|post(„/changeEmployee“)| changes an employee| Ignacio
+|U30|generateEmployee|logged in as Boss|employee data|employee email|Ignacio
+|U31|deleteEmployee|logged in as Boss|employee data|assert null for given employee|Ignacio
+|U32|testEmployeeId|logged in as boss|employeeId|returns given employee id|Ignacio
+|U33|setRole|logged in as boss|employee role| returns given role|Ignacio
+|U34|createCustomer|logged in|user data| returns given customer with all its respective data|David
+|U35|createEmployee|logged in|user data| returns given employee with all its respective data|David
+|U36|createCompany |logged in|user data| returns given company with all its respective data|David
+|U37|changeCustomer|customer in data base|register customer|returns given customer with the respective changes|David
+|U38|changeCompany |company in data base|register company| returns given company with the respective changes|David
+|U39|changeEmployee| employee in data base|change form |returns given employee with the respective changes|David
+|U40|emailTest|user present in data each database|change email|returns the changed email for the respective user|David
+|U41|preventPublicAccess|not logged in|post(„/registerUser)|expect error 405|David
+|U42|allowRegistrationAccess|not logged in|post(„/register)| expect is ok|David
+|U43|allowEmployeeAccess|logged in|post(„/employees)| expect is ok and model „users“ exists|David
+|U44|CompareIngredientTested|none|create new ingredients|new ingredients created|Ignacio
+
+
+
+|===

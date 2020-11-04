@@ -1,0 +1,42 @@
+= Persönliches Feedback eines Teammitgliedes des Softwarepraktikums 2019/20
+// Auch wenn der Bogen nicht anonymisiert ist, dürfen Sie gern Ihre Meinung offen kundtun.
+// Sowohl positive als auch negative Anmerkungen werden gern gesehen und zur stetigen Verbesserung genutzt.
+// Versuchen Sie in dieser Auswertung also stets sowohl Positives wie auch Negatives zu erwähnen.
+
+**Von: Dominik**
+
+**Gruppe: 36**
+
+== Was habe ich gelernt?
+Arbeitsteilung/ Teamarbeit, mehr Erfahrung mit Git, allgemein Wissen zur Programierung von Websites
+
+== Welche Erfahrungen habe ich mit der Zusammenarbeit im Team gemacht?
+gute Erfahrung, gute Kommunikation durch häufige Treffen, hilfsbereit 
+
+== Welche Erfahrungen habe ich bei der Wiederverwendung von Bibliotheken/Frameworks (insbesondere SalesPoint) gemacht?
+im Großen und Ganzen in Ordnung, leider relativ wenig Material im Netz, teilweise gefühlt etwas umständlich (z.B. kommt man über
+die OrderLine nicht an das Produkt heran)
+
+== Welche Vorschläge zur weiteren Verbesserung des Softwarepraktikums gibt es?
+- Ich empfand die Einführungsskripte als nicht geeignet für jemanden, der mit Spring bisher noch nichts zu tun hatte 
+(zu viel Wissen vorausgesetzt/ Benutzung von Fachbegriffen mit denen ich nichts anfangen kann/ konnte)...
+
+-> Ich denke, wenn man sich wirklich Mühe gibt und gute Guides zum Einstieg macht, ist es für die Studenten deutlich
+einfacher, sich in das Projekt hineinzufinden und am Anfang nicht das Gefühl von Überforderng zu haben. 
+Dabei sollte man bedenken, dass es Leute gibt, die davon noch gar nichts gehört haben und seine Wortwahl entsprechend anpassen.
+Man kann beispielsweise das Konzept des Model-View-Controllers lang und breit erläutern (was sicher auch wichtig sein mag), 
+aber für mich wäre es besser gewesen, wenn man (gefühlt) das GET-Mapping nicht nur in einem Nebensatz erwähnt hätte, da das Dinge 
+sind, unter denen ich mir etwas vorstellen kann und was beim Einstieg geholfen hätte, wenn man sich dafür etwas mehr Zeit nimmt, ob
+nun in der Vorlesung oder in Online-Materialien.
+
+- besser über Vorlesungen über Spring im Sommersemester informieren
+
+
+== Feedback für den Tutor
+Marvin: + gute Zusammenarbeit, immer für Fragen offen, hat stets klargemacht, was als Nächstes zu tun ist -> strukturiert  
+        - hatte mit Spring/ Salespoint anscheinend davor nicht so viel zu tun, verwies bei Fachfragen meist an den Lernraum 
+        
+Julian: nur kurze Zeit unser Tutor, hat sich aber in den Treffen viel Zeit genommen, wie Marvin immer offen für Fragen, Kommunikation 
+gut (schnelle Antwort z.B. hinsichtlich MagicDraw Keys)
+
+== Sonstiges und Anmerkungen
